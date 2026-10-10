@@ -918,4 +918,51 @@ donationForm.addEventListener('submit', async event => {
     return;
   }
 
-  submit
+  submitting = true;
+submitButton.disabled = true;
+submitButton.textContent = 'Memproses donasi...';
+
+let donationSaved = false;
+
+try {
+  const donation = await createDonation({
+    campaign_id: activeCampaign,
+    donor_name: name,
+    donor_contact: contact || null,
+    amount: amount,
+    payment_status: 'pending',
+    payment_reference: null
+  });
+
+  donationSaved = true;
+
+  const payment = await createPayment(donation.id);
+
+  window.location.href = payment.redirect_url;
+
+} catch (error) {
+  console.error('Donation process error:', error);
+
+  if (donationSaved) {
+    showStatus(
+      'Data donasi sudah tersimpan, tetapi pembayaran gagal dibuat. ' +
+      error.message,
+      true
+    );
+  } else {
+    showStatus(
+      'Donasi belum berhasil diproses. ' + error.message,
+      true
+    );
+  }
+
+} finally {
+  submitting = false;
+  submitButton.disabled = false;
+  submitButton.textContent = 'Lanjutkan ke Pembayaran';
+}
+});
+
+</script>
+</body>
+</html>
