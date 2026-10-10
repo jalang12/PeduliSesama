@@ -923,6 +923,14 @@ submitButton.textContent = 'Memproses donasi...';
 let donationSaved = false;
 
 try {
+  console.log('DATA DONASI:', {
+campaign_id: activeCampaign,
+donor_name: name,
+amount: amount,
+payment_status: 'pending',
+payment_reference: null
+});
+  
   const donation = await createDonation({
     campaign_id: activeCampaign,
     donor_name: name,
