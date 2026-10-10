@@ -1072,6 +1072,108 @@ payment_reference: null
 }
 });
 
+  // =====================================
+// PROGRESS DONASI PEDULISESAMA
+// =====================================
+
+const PROGRESS_URL =
+  'https://jghscfvxpollihkdpzxc.supabase.co/functions/v1/campaign-progress';
+
+const CAMPAIGN_TARGETS = {
+  pendidikan: 50000000,
+  mushola: 30000000,
+  kelas: 40000000
+};
+
+function formatRupiah(amount) {
+  return 'Rp' + Number(amount).toLocaleString('id-ID');
+}
+
+async function loadCampaignProgress() {
+  try {
+    const response = await fetch(PROGRESS_URL, {
+      method: 'GET',
+      headers: {
+        'apikey': SUPABASE_KEY
+      },
+      cache: 'no-store'
+    });
+
+    if (!response.ok) {
+      throw new Error('Gagal mengambil data progress.');
+    }
+
+    const result = await response.json();
+
+    if (!result.success || !result.totals) {
+      throw new Error('Format data progress tidak valid.');
+    }
+
+    for (const campaignId of Object.keys(CAMPAIGN_TARGETS)) {
+      const total = Math.max(
+        0,
+        Number(result.totals[campaignId]) || 0
+      );
+
+      const target = CAMPAIGN_TARGETS[campaignId];
+      const percentage = Math.min(
+        100,
+        Math.max(0, (total / target) * 100)
+      );
+
+      const totalElement =
+        document.getElementById('total-' + campaignId);
+
+      const fillElement =
+        document.getElementById('fill-' + campaignId);
+
+      const percentElement =
+        document.getElementById('percent-' + campaignId);
+
+      const barElement =
+        document.getElementById('bar-' + campaignId);
+
+      if (totalElement) {
+        totalElement.textContent = formatRupiah(total);
+      }
+
+      if (fillElement) {
+        fillElement.style.width = percentage + '%';
+      }
+
+      if (percentElement) {
+        percentElement.textContent =
+          percentage.toFixed(1).replace('.', ',') +
+          '% tercapai';
+      }
+
+      if (barElement) {
+        barElement.setAttribute(
+          'aria-valuenow',
+          String(Math.round(percentage))
+        );
+      }
+    }
+
+  } catch (error) {
+    console.error('Progress donasi gagal dimuat:', error);
+
+    for (const campaignId of Object.keys(CAMPAIGN_TARGETS)) {
+      const totalElement =
+        document.getElementById('total-' + campaignId);
+
+      if (totalElement) {
+        totalElement.textContent = 'Belum tersedia';
+      }
+    }
+  }
+}
+
+// Muat progress saat halaman dibuka.
+loadCampaignProgress();
+
+// Perbarui progress setiap 60 detik.
+setInterval(loadCampaignProgress, 60000);
 </script>
 </body>
 </html>
