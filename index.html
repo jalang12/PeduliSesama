@@ -432,79 +432,148 @@ footer {
         Pilih program, tentukan nominal, lalu lanjutkan ke halaman pembayaran.
       </p>  <div class="cards" id="campaignCards">
 
-    <article class="card">
-      <img
-        src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=85"
-        alt="Anak-anak belajar"
-        loading="lazy">
+  <article class="card">
+    <img
+      src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=85"
+      alt="Anak-anak belajar"
+      loading="lazy">
 
-      <div class="card-body">
-        <span class="tag">PENDIDIKAN</span>
-        <h3>Bantu Pendidikan Anak Negeri</h3>
-        <p>
-          Dukung penyediaan buku, alat tulis, dan perbaikan fasilitas belajar.
-        </p>
+    <div class="card-body">
+      <span class="tag">PENDIDIKAN</span>
+      <h3>Bantu Pendidikan Anak Negeri</h3>
+      <p>
+        Dukung penyediaan buku, alat tulis, dan perbaikan fasilitas belajar.
+      </p>
 
-        <div class="money">
-          Target
-          <strong>Rp50.000.000</strong>
+      <div class="money">
+        Target
+        <strong>Rp50.000.000</strong>
+      </div>
+
+      <div class="progress-section">
+        <div class="progress-info">
+          <span>Terkumpul</span>
+          <strong id="total-pendidikan">Memuat...</strong>
         </div>
 
-        <button class="btn" type="button" data-campaign="pendidikan">
-          ♥ Donasi Sekarang
-        </button>
-      </div>
-    </article>
-
-    <article class="card">
-      <img
-        src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=900&q=85"
-        alt="Tempat ibadah"
-        loading="lazy">
-
-      <div class="card-body">
-        <span class="tag">MUSHOLA</span>
-        <h3>Renovasi Mushola yang Membutuhkan</h3>
-        <p>
-          Bantu perbaikan atap, dinding, lantai, dan fasilitas mushola.
-        </p>
-
-        <div class="money">
-          Target
-          <strong>Rp30.000.000</strong>
+        <div
+          class="progress-track"
+          role="progressbar"
+          aria-label="Progress donasi pendidikan"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          id="bar-pendidikan">
+          <div class="progress-fill" id="fill-pendidikan"></div>
         </div>
 
-        <button class="btn" type="button" data-campaign="mushola">
-          ♥ Donasi Sekarang
-        </button>
+        <div class="progress-info">
+          <span id="percent-pendidikan">0% tercapai</span>
+          <span>Target Rp50.000.000</span>
+        </div>
       </div>
-    </article>
 
-    <article class="card">
-      <img
-        src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=900&q=85"
-        alt="Ruang kelas"
-        loading="lazy">
+      <button class="btn" type="button" data-campaign="pendidikan">
+        ♥ Donasi Sekarang
+      </button>
+    </div>
+  </article>
 
-      <div class="card-body">
-        <span class="tag">RUANG KELAS</span>
-        <h3>Perbaikan Ruang Kelas</h3>
-        <p>
-          Dukung perbaikan meja, kursi, dan ruang belajar agar lebih aman.
-        </p>
+  <article class="card">
+    <img
+      src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=900&q=85"
+      alt="Tempat ibadah"
+      loading="lazy">
 
-        <div class="money">
-          Target
-          <strong>Rp40.000.000</strong>
+    <div class="card-body">
+      <span class="tag">MUSHOLA</span>
+      <h3>Renovasi Mushola yang Membutuhkan</h3>
+      <p>
+        Bantu perbaikan atap, dinding, lantai, dan fasilitas mushola.
+      </p>
+
+      <div class="money">
+        Target
+        <strong>Rp30.000.000</strong>
+      </div>
+
+      <div class="progress-section">
+        <div class="progress-info">
+          <span>Terkumpul</span>
+          <strong id="total-mushola">Memuat...</strong>
         </div>
 
-        <button class="btn" type="button" data-campaign="kelas">
-          ♥ Donasi Sekarang
-        </button>
-      </div>
-    </article>
+        <div
+          class="progress-track"
+          role="progressbar"
+          aria-label="Progress donasi mushola"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          id="bar-mushola">
+          <div class="progress-fill" id="fill-mushola"></div>
+        </div>
 
-  </div>
+        <div class="progress-info">
+          <span id="percent-mushola">0% tercapai</span>
+          <span>Target Rp30.000.000</span>
+        </div>
+      </div>
+
+      <button class="btn" type="button" data-campaign="mushola">
+        ♥ Donasi Sekarang
+      </button>
+    </div>
+  </article>
+
+  <article class="card">
+    <img
+      src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=900&q=85"
+      alt="Ruang kelas"
+      loading="lazy">
+
+    <div class="card-body">
+      <span class="tag">RUANG KELAS</span>
+      <h3>Perbaikan Ruang Kelas</h3>
+      <p>
+        Dukung perbaikan meja, kursi, dan ruang belajar agar lebih aman.
+      </p>
+
+      <div class="money">
+        Target
+        <strong>Rp40.000.000</strong>
+      </div>
+
+      <div class="progress-section">
+        <div class="progress-info">
+          <span>Terkumpul</span>
+          <strong id="total-kelas">Memuat...</strong>
+        </div>
+
+        <div
+          class="progress-track"
+          role="progressbar"
+          aria-label="Progress donasi ruang kelas"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          id="bar-kelas">
+          <div class="progress-fill" id="fill-kelas"></div>
+        </div>
+
+        <div class="progress-info">
+          <span id="percent-kelas">0% tercapai</span>
+          <span>Target Rp40.000.000</span>
+        </div>
+      </div>
+
+      <button class="btn" type="button" data-campaign="kelas">
+        ♥ Donasi Sekarang
+      </button>
+    </div>
+  </article>
+
+      </div>
 
   <p class="fine">
     Pembayaran baru dianggap berhasil setelah dikonfirmasi melalui
