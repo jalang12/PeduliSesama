@@ -1,149 +1,867 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#073d30">
 <title>PeduliSesama — Berbagi untuk Negeri</title>
+
 <style>
-:root{--g:#087456;--d:#073d30;--ink:#182d28;--muted:#65746d;--bg:#f6f8f4;--line:#e2e8e2;--mint:#e1f2e7}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif;line-height:1.55}a{color:inherit;text-decoration:none}.wrap{width:min(1160px,92%);margin:auto}.btn{display:inline-block;border:0;border-radius:9px;background:var(--g);color:white;padding:11px 16px;font-weight:700;font-size:13px;cursor:pointer;text-align:center}.btn:hover{background:var(--d)}.outline{background:transparent;border:1px solid currentColor;color:inherit}header{position:absolute;z-index:4;top:0;left:0;right:0;color:white;border-bottom:1px solid #ffffff33}.nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{font-size:22px;font-weight:800}.brand small{display:block;font-size:10px;font-weight:400}.links{display:flex;gap:20px;font-size:12px}.hero{min-height:420px;display:flex;align-items:center;padding-top:55px;color:white;background:linear-gradient(90deg,#081710ed,#081710ad 45%,#08171012),url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1800&q=85') center/cover}.hero-content{padding:65px 0;max-width:560px}.eyebrow,.kicker{font-size:12px;font-weight:800;letter-spacing:1px;color:#9cdeb2}.hero h1{font-size:clamp(40px,5vw,61px);line-height:1.05;letter-spacing:-1.5px;margin:14px 0}.hero h1 span{color:#9cdeb2}.hero p{max-width:460px;font-size:14px;color:#f0f4f1}.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}section{padding:38px 0 55px}.kicker{color:var(--g)}h2{font-size:clamp(26px,3vw,36px);line-height:1.15;margin:7px 0}.sub{font-size:14px;color:var(--muted);margin:0 0 22px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{background:white;border:1px solid var(--line);border-radius:13px;overflow:hidden;box-shadow:0 5px 16px #1435220b}.card img{width:100%;height:180px;object-fit:cover;display:block;filter:grayscale(.45) sepia(.15) brightness(.8)}.body{padding:16px}.tag{background:var(--mint);color:var(--g);font-size:11px;font-weight:800;padding:4px 8px;border-radius:5px}.card h3{font-size:18px;line-height:1.3;margin:10px 0 7px}.card p{font-size:12px;color:var(--muted);min-height:55px}.money{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);gap:8px}.money strong{display:block;color:var(--ink);font-size:12px}.bar{height:6px;background:#e9efea;border-radius:8px;margin:9px 0}.bar span{display:block;height:100%;background:#2a9870;border-radius:8px}.card .btn{width:100%;margin-top:10px}.fine{font-size:11px;color:var(--muted);margin-top:14px}.trust{background:var(--d);color:white;text-align:center;border-radius:15px;padding:30px;margin:0 0 45px}.trust p{max-width:730px;margin:8px auto;color:#d7e7de;font-size:13px}footer{background:#062f26;color:white;padding:24px 0}.foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;font-size:12px}.modal{position:fixed;inset:0;background:#041d16c9;display:none;align-items:center;justify-content:center;padding:16px;z-index:20}.modal.open{display:flex}.modalbox{width:min(460px,100%);max-height:92vh;overflow:auto;background:white;border-radius:17px;padding:22px}.modalhead{display:flex;justify-content:space-between;gap:12px}.modalhead h2{font-size:24px}.close{border:0;border-radius:50%;width:34px;height:34px;font-size:22px}.label{display:block;font-size:12px;font-weight:700;margin:13px 0 6px}.input{width:100%;padding:12px;border:1px solid #d6e1d8;border-radius:8px;font:inherit;font-size:14px}.amounts{display:grid;grid-template-columns:1fr 1fr;gap:8px}.amount{border:1px solid #cbded0;background:#f7fbf8;color:var(--g);padding:11px;border-radius:8px;font-weight:700}.amount.sel{background:var(--g);color:white}.notice{font-size:11px;color:var(--muted)}.status{display:none;padding:12px;border-radius:8px;background:#e8f6ed;color:#17543a;font-size:13px;margin-top:12px}
-@media(max-width:760px){.links{display:none}.cards{grid-template-columns:1fr 1fr}.hero{background-position:60% center}.card img{height:160px}}
-@media(max-width:520px){.nav .btn{font-size:11px;padding:9px}.brand{font-size:19px}.hero{min-height:450px}.hero h1{font-size:43px}.cards{grid-template-columns:1fr}.card img{height:210px}.card p{min-height:0}}
+:root {
+  --g: #087456;
+  --d: #073d30;
+  --ink: #182d28;
+  --muted: #65746d;
+  --bg: #f6f8f4;
+  --line: #e2e8e2;
+  --mint: #e1f2e7;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Arial, sans-serif;
+  line-height: 1.55;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.wrap {
+  width: min(1160px, 92%);
+  margin: auto;
+}
+
+.btn {
+  display: inline-block;
+  border: 0;
+  border-radius: 9px;
+  background: var(--g);
+  color: white;
+  padding: 11px 16px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn:hover { background: var(--d); }
+
+.btn:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
+.outline {
+  background: transparent;
+  border: 1px solid currentColor;
+  color: inherit;
+}
+
+header {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  border-bottom: 1px solid #ffffff33;
+}
+
+.nav {
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.brand {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.brand small {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+  font-size: 12px;
+}
+
+.hero {
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  padding-top: 55px;
+  color: white;
+  background:
+    linear-gradient(90deg,#081710ed,#081710ad 45%,#08171012),
+    url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1800&q=85')
+    center/cover;
+}
+
+.hero-content {
+  padding: 65px 0;
+  max-width: 560px;
+}
+
+.eyebrow, .kicker {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #9cdeb2;
+}
+
+.hero h1 {
+  font-size: clamp(40px,5vw,61px);
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+  margin: 14px 0;
+}
+
+.hero h1 span { color: #9cdeb2; }
+
+.hero p {
+  max-width: 460px;
+  font-size: 14px;
+  color: #f0f4f1;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+section { padding: 38px 0 55px; }
+
+.kicker { color: var(--g); }
+
+h2 {
+  font-size: clamp(26px,3vw,36px);
+  line-height: 1.15;
+  margin: 7px 0;
+}
+
+.sub {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0 0 22px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 18px;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  overflow: hidden;
+  box-shadow: 0 5px 16px #1435220b;
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(.45) sepia(.15) brightness(.8);
+}
+
+.body { padding: 16px; }
+
+.tag {
+  background: var(--mint);
+  color: var(--g);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+
+.card h3 {
+  font-size: 18px;
+  line-height: 1.3;
+  margin: 10px 0 7px;
+}
+
+.card p {
+  font-size: 12px;
+  color: var(--muted);
+  min-height: 55px;
+}
+
+.money {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+  gap: 8px;
+}
+
+.money strong {
+  display: block;
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.bar {
+  height: 6px;
+  background: #e9efea;
+  border-radius: 8px;
+  margin: 9px 0;
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  background: #2a9870;
+  border-radius: 8px;
+}
+
+.card .btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.fine {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 14px;
+}
+
+.trust {
+  background: var(--d);
+  color: white;
+  text-align: center;
+  border-radius: 15px;
+  padding: 30px;
+  margin: 0 0 45px;
+}
+
+.trust p {
+  max-width: 730px;
+  margin: 8px auto;
+  color: #d7e7de;
+  font-size: 13px;
+}
+
+footer {
+  background: #062f26;
+  color: white;
+  padding: 24px 0;
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: #041d16c9;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 20;
+}
+
+.modal.open { display: flex; }
+
+.modalbox {
+  width: min(460px,100%);
+  max-height: 92vh;
+  overflow: auto;
+  background: white;
+  border-radius: 17px;
+  padding: 22px;
+}
+
+.modalhead {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.modalhead h2 { font-size: 24px; }
+
+.close {
+  border: 0;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 13px 0 6px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d6e1d8;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 14px;
+}
+
+.amounts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.amount {
+  border: 1px solid #cbded0;
+  background: #f7fbf8;
+  color: var(--g);
+  padding: 11px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.amount.sel {
+  background: var(--g);
+  color: white;
+}
+
+.notice {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.status {
+  display: none;
+  padding: 12px;
+  border-radius: 8px;
+  background: #e8f6ed;
+  color: #17543a;
+  font-size: 13px;
+  margin-top: 12px;
+  overflow-wrap: anywhere;
+}
+
+.status.error {
+  background: #fff0ee;
+  color: #8b2118;
+}
+
+@media(max-width:760px) {
+  .links { display: none; }
+  .cards { grid-template-columns: 1fr 1fr; }
+  .hero { background-position: 60% center; }
+  .card img { height: 160px; }
+}
+
+@media(max-width:520px) {
+  .nav .btn { font-size: 11px; padding: 9px; }
+  .brand { font-size: 19px; }
+  .hero { min-height: 450px; }
+  .hero h1 { font-size: 43px; }
+  .cards { grid-template-columns: 1fr; }
+  .card img { height: 210px; }
+  .card p { min-height: 0; }
+}
 </style>
 </head>
+
 <body>
-<header><nav class="nav wrap"><a class="brand" href="#">♡ PeduliSesama<small>Berbagi untuk Negeri</small></a><div class="links"><a href="#">Beranda</a><a href="#program">Program Donasi</a><a href="#tentang">Tentang Kami</a></div><a class="btn" href="#program">Donasi Sekarang</a></nav></header>
-<main><div class="hero"><div class="wrap hero-content"><div class="eyebrow">BERSAMA WUJUDKAN PERUBAHAN</div><h1>Mereka juga<br>punya <span>mimpi...</span></h1><p>Dukung pendidikan, perbaikan fasilitas ibadah, dan ruang belajar yang lebih aman bagi masyarakat yang membutuhkan.</p><div class="row"><a class="btn" href="#program">♥ Donasi Sekarang</a><a class="btn outline" href="#tentang">Tentang Program</a></div></div></div>
-<section id="program"><div class="wrap"><div class="kicker">PROGRAM DONASI KAMI</div><h2>Pilih Program yang Bisa Anda Dukung</h2><p class="sub">Pilih program dan isi formulir. Catatan donasi akan dikirim ke database online dengan status menunggu verifikasi.</p><div class="cards" id="campaignCards"></div><p class="fine">Foto merupakan ilustrasi tema program. Formulir ini mencatat niat donasi, bukan memproses pembayaran. Donasi baru dianggap sah setelah pembayaran diverifikasi.</p></div></section>
-<div class="wrap" id="tentang"><div class="trust"><h2>Kepercayaan adalah amanah.</h2><p>Website ini terhubung ke database untuk mencatat niat donasi dengan status menunggu verifikasi. Pembayaran belum diproses di website ini. Sebelum menerima dana sungguhan, siapkan autentikasi admin, integrasi pembayaran resmi, serta verifikasi dan perizinan yang berlaku.</p><a class="btn" href="admin.html">Panel Admin</a></div></div></main>
-<footer><div class="wrap foot"><strong>♡ PeduliSesama · Berbagi untuk Negeri</strong><span>© 2026 · PeduliSesama</span><a href="admin.html">Panel Admin</a></div></footer>
-<div class="modal" id="donationModal" role="dialog" aria-modal="true"><div class="modalbox"><div class="modalhead"><div><div class="kicker">FORMULIR DONASI</div><h2>Berbagi kebaikan</h2><p id="programName" class="sub"></p></div><button class="close" onclick="closeModal()">×</button></div><form id="donationForm"><label class="label" for="name">Nama donatur</label><input class="input" id="name" maxlength="100" required placeholder="Nama Anda"><label class="label" for="contact">Email/WhatsApp (opsional)</label><input class="input" id="contact" maxlength="120" placeholder="Kontak Anda"><span class="label">Pilih nominal</span><div class="amounts"><button type="button" class="amount sel" data-value="10000">Rp10.000</button><button type="button" class="amount" data-value="25000">Rp25.000</button><button type="button" class="amount" data-value="50000">Rp50.000</button><button type="button" class="amount" data-value="100000">Rp100.000</button></div><label class="label" for="custom">Nominal lain (Rupiah)</label><input class="input" id="custom" type="number" min="1000" step="1000" placeholder="Contoh: 150000"><p class="notice">Formulir ini belum menerima atau mentransfer uang. Data akan disimpan sebagai donasi yang menunggu verifikasi.</p><button class="btn" style="width:100%;margin-top:8px">Kirim Formulir Donasi</button><div id="formStatus" class="status"></div></form></div></div>
+
+<header>
+  <nav class="nav wrap">
+    <a class="brand" href="#">
+      ♡ PeduliSesama
+      <small>Berbagi untuk Negeri</small>
+    </a>
+
+    <div class="links">
+      <a href="#">Beranda</a>
+      <a href="#program">Program Donasi</a>
+      <a href="#tentang">Tentang Kami</a>
+    </div>
+
+    <a class="btn" href="#program">Donasi Sekarang</a>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap hero-content">
+      <div class="eyebrow">BERSAMA WUJUDKAN PERUBAHAN</div>
+      <h1>Mereka juga<br>punya <span>mimpi...</span></h1>
+      <p>
+        Dukung pendidikan, perbaikan fasilitas ibadah, dan ruang belajar
+        yang lebih aman bagi masyarakat yang membutuhkan.
+      </p>
+
+      <div class="row">
+        <a class="btn" href="#program">♥ Donasi Sekarang</a>
+        <a class="btn outline" href="#tentang">Tentang Program</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="program">
+    <div class="wrap">
+      <div class="kicker">PROGRAM DONASI KAMI</div>
+      <h2>Pilih Program yang Bisa Anda Dukung</h2>
+      <p class="sub">
+        Pilih program, tentukan nominal, dan lanjutkan ke pembayaran.
+      </p>
+
+      <div class="cards" id="campaignCards">
+        <p>Memuat program donasi...</p>
+      </div>
+
+      <p class="fine">
+        Donasi baru dianggap berhasil setelah pembayaran diverifikasi
+        melalui notifikasi resmi dari penyedia pembayaran.
+      </p>
+    </div>
+  </section>
+
+  <div class="wrap" id="tentang">
+    <div class="trust">
+      <h2>Kepercayaan adalah amanah.</h2>
+      <p>
+        Kami berupaya mencatat setiap donasi dengan baik. Status pembayaran
+        diperbarui berdasarkan konfirmasi pembayaran yang valid.
+        Sebelum menerima dana sungguhan, pastikan identitas pengelola,
+        perizinan, dan ketentuan penggalangan dana telah dipenuhi.
+      </p>
+      <a class="btn" href="admin.html">Panel Admin</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <strong>♡ PeduliSesama · Berbagi untuk Negeri</strong>
+    <span>© 2026 · PeduliSesama</span>
+    <a href="admin.html">Panel Admin</a>
+  </div>
+</footer>
+
+<div class="modal" id="donationModal" role="dialog" aria-modal="true"
+     aria-labelledby="donationTitle">
+
+  <div class="modalbox">
+    <div class="modalhead">
+      <div>
+        <div class="kicker">FORMULIR DONASI</div>
+        <h2 id="donationTitle">Berbagi kebaikan</h2>
+        <p id="programName" class="sub"></p>
+      </div>
+
+      <button class="close" type="button"
+              onclick="closeModal()" aria-label="Tutup">×</button>
+    </div>
+
+    <form id="donationForm">
+      <label class="label" for="name">Nama donatur</label>
+      <input class="input" id="name" maxlength="100" required
+             autocomplete="name" placeholder="Nama Anda">
+
+      <label class="label" for="contact">Email/WhatsApp (opsional)</label>
+      <input class="input" id="contact" maxlength="120"
+             placeholder="Kontak Anda">
+
+      <span class="label">Pilih nominal</span>
+
+      <div class="amounts">
+        <button type="button" class="amount sel" data-value="10000">
+          Rp10.000
+        </button>
+        <button type="button" class="amount" data-value="25000">
+          Rp25.000
+        </button>
+        <button type="button" class="amount" data-value="50000">
+          Rp50.000
+        </button>
+        <button type="button" class="amount" data-value="100000">
+          Rp100.000
+        </button>
+      </div>
+
+      <label class="label" for="custom">Nominal lain (Rupiah)</label>
+      <input class="input" id="custom" type="number"
+             min="1000" step="1000" inputmode="numeric"
+             placeholder="Contoh: 150000">
+
+      <p class="notice">
+        Pembayaran akan diproses melalui halaman pembayaran Midtrans.
+        Jangan tutup halaman sebelum diarahkan ke pembayaran.
+      </p>
+
+      <button class="btn" id="submitDonation" type="submit"
+              style="width:100%;margin-top:8px">
+        Lanjutkan ke Pembayaran
+      </button>
+
+      <div id="formStatus" class="status" role="status"
+           aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+
 <script>
-// KONFIGURASI: isi dengan Project URL dan Publishable key dari Supabase.
+// ======================================================
+// KONFIGURASI SUPABASE
+// Gunakan Project URL dan Publishable Key dari proyekmu.
+// Jangan pernah menaruh service_role key atau Midtrans
+// Server Key di file HTML publik.
+// ======================================================
+
 const SUPABASE_URL = 'https://jghscfvxpollihkdpzxc.supabase.co';
 const SUPABASE_KEY = 'sb_publishable__0YZI4z45e4J99Ny0GoabA_MQkcevdJ';
 
-const defaultCampaigns=[
- {id:'pendidikan',name:'Bantu Pendidikan Anak Negeri',tag:'PENDIDIKAN',desc:'Dukung penyediaan buku, alat tulis, dan perbaikan fasilitas belajar.',target:50000000,img:'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=85',alt:'Anak-anak belajar'},
- {id:'mushola',name:'Renovasi Mushola yang Membutuhkan',tag:'MUSHOLA',desc:'Bantu perbaikan atap, dinding, lantai, dan fasilitas mushola.',target:30000000,img:'https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=900&q=85',alt:'Interior tempat ibadah'},
- {id:'kelas',name:'Perbaikan Ruang Kelas',tag:'RUANG KELAS',desc:'Dukung perbaikan meja, kursi, dan ruang belajar agar lebih aman.',target:40000000,img:'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=900&q=85',alt:'Ruang kelas'}
+// Fungsi pembayaran yang sudah dibuat di Supabase.
+const PAYMENT_FUNCTION =
+  `${SUPABASE_URL}/functions/v1/midtrans-payment`;
+
+// ======================================================
+// DATA PROGRAM DONASI
+// ======================================================
+
+const defaultCampaigns = [
+  {
+    id: 'pendidikan',
+    name: 'Bantu Pendidikan Anak Negeri',
+    tag: 'PENDIDIKAN',
+    desc: 'Dukung penyediaan buku, alat tulis, dan perbaikan fasilitas belajar.',
+    target: 50000000,
+    img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=85',
+    alt: 'Anak-anak belajar'
+  },
+  {
+    id: 'mushola',
+    name: 'Renovasi Mushola yang Membutuhkan',
+    tag: 'MUSHOLA',
+    desc: 'Bantu perbaikan atap, dinding, lantai, dan fasilitas mushola.',
+    target: 30000000,
+    img: 'https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=900&q=85',
+    alt: 'Interior tempat ibadah'
+  },
+  {
+    id: 'kelas',
+    name: 'Perbaikan Ruang Kelas',
+    tag: 'RUANG KELAS',
+    desc: 'Dukung perbaikan meja, kursi, dan ruang belajar agar lebih aman.',
+    target: 40000000,
+    img: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=900&q=85',
+    alt: 'Ruang kelas'
+  }
 ];
-let campaigns = defaultCampaigns;
-const fmt=n=>new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(n);
-function isConfigured(){return SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('TEMPEL_') && SUPABASE_KEY && !SUPABASE_KEY.includes('TEMPEL_');}
-async function sb(path, options={}){
- const response=await fetch(`${SUPABASE_URL}/rest/v1/${path}`,{
-  ...options,
-  headers:{
-   'apikey':SUPABASE_KEY,
-   'Authorization':`Bearer ${SUPABASE_KEY}`,
-   'Content-Type':'application/json',
-   'Prefer':'return=minimal',
-   ...(options.headers||{})
-  }
- });
- if(!response.ok){let detail='';try{detail=await response.text()}catch(e){};throw new Error(`HTTP ${response.status}: ${detail||response.statusText}`);}
- return response;
+
+let campaigns = [...defaultCampaigns];
+let chosen = 10000;
+let activeCampaign = '';
+let submitting = false;
+
+const fmt = n => new Intl.NumberFormat('id-ID', {
+  style: 'currency',
+  currency: 'IDR',
+  maximumFractionDigits: 0
+}).format(n);
+
+function isConfigured() {
+  return SUPABASE_URL.startsWith('https://')
+    && SUPABASE_KEY.length > 10
+    && !SUPABASE_URL.includes('TEMPEL_')
+    && !SUPABASE_KEY.includes('TEMPEL_');
 }
-function renderCampaigns(){
- document.getElementById('campaignCards').innerHTML=campaigns.map(c=>`<article class="card"><img src="${c.img}" alt="${c.alt}" loading="lazy"><div class="body"><span class="tag">${c.tag}</span><h3>${c.name}</h3><p>${c.desc}</p><div class="money"><div>Target<strong>${fmt(c.target)}</strong></div><div style="text-align:right">Status<strong>Terbuka</strong></div></div><div class="bar"><span style="width:0%"></span></div><div style="text-align:right;font-size:10px;color:var(--g)">Donasi menunggu verifikasi</div><button class="btn" onclick="openModal('${c.id}')">♥ Donasi Sekarang</button></div></article>`).join('');
+
+// ======================================================
+// SUPABASE REST API
+// ======================================================
+
+async function sb(path, options = {}) {
+  const headers = {
+    'apikey': SUPABASE_KEY,
+    'Authorization': `Bearer ${SUPABASE_KEY}`,
+    'Content-Type': 'application/json',
+    'Prefer': 'return=minimal',
+    ...(options.headers || {})
+  };
+
+  const response = await fetch(
+    `${SUPABASE_URL}/rest/v1/${path}`,
+    {
+      ...options,
+      headers
+    }
+  );
+
+  if (!response.ok) {
+    let detail = '';
+
+    try {
+      detail = await response.text();
+    } catch (_) {}
+
+    throw new Error(
+      `Supabase HTTP ${response.status}: ${detail || response.statusText}`
+    );
+  }
+
+  return response;
 }
-let chosen=10000, activeCampaign='';
-function openModal(id){activeCampaign=id;document.getElementById('programName').textContent=campaigns.find(c=>c.id===id).name;document.getElementById('donationModal').classList.add('open');const st=document.getElementById('formStatus');st.style.display='none';document.body.style.overflow='hidden'}
-function closeModal(){document.getElementById('donationModal').classList.remove('open');document.body.style.overflow=''}
-document.querySelectorAll('.amount').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.amount').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');chosen=Number(b.dataset.value);document.getElementById('custom').value=''}));
-document.getElementById('custom').addEventListener('input',()=>document.querySelectorAll('.amount').forEach(x=>x.classList.remove('sel')));
-document.getElementById('donationForm').addEventListener('submit',async e=>{
- e.preventDefault();
- const st=document.getElementById('formStatus'); st.style.display='block'; st.textContent='Memproses...';
- if(!isConfigured()){st.textContent='Konfigurasi belum diisi. Isi SUPABASE_URL dan SUPABASE_KEY di bagian script sebelum digunakan.';return;}
- const custom=Number(document.getElementById('custom').value);
- const amount=custom>0?custom:chosen;
- const name=document.getElementById('name').value.trim();
- const contact=document.getElementById('contact').value.trim();
- if(amount<1000){st.textContent='Minimal nominal adalah Rp1.000.';return;}
- if(!name || name.length>100){st.textContent='Masukkan nama donatur (maksimal 100 karakter).';return;}
- const campaign=campaigns.find(c=>c.id===activeCampaign);
- try{
-  await sb('donations',{method:'POST',body:JSON.stringify({
-   campaign_id:activeCampaign, donor_name:name, donor_contact:contact||null,
-   amount:Math.round(amount), payment_status:'pending', payment_reference:null
-  })});
-  st.textContent=`Formulir donasi ${fmt(amount)} berhasil dikirim dan tercatat dengan status MENUNGGU VERIFIKASI. Ini belum merupakan pembayaran; silakan ikuti instruksi pembayaran resmi dari pengelola.`;
-  document.getElementById('donationForm').addEventListener('submit', async e => {
-  e.preventDefault();
 
-  const form = e.currentTarget;
-  const st = document.getElementById('formStatus');
-  const submitButton = form.querySelector('button[type="submit"]');
+// ======================================================
+// RENDER PROGRAM
+// ======================================================
 
-  if (!isConfigured()) {
-    st.style.display = 'block';
-    st.textContent = 'Konfigurasi Supabase belum lengkap.';
-    return;
-  }
+function renderCampaigns() {
+  const container = document.getElementById('campaignCards');
 
-  const custom = Number(document.getElementById('custom').value);
-  const amount = custom > 0 ? custom : chosen;
-  const name = document.getElementById('name').value.trim();
-  const contact = document.getElementById('contact').value.trim();
+  container.innerHTML = campaigns.map(c => `
+    <article class="card">
+      <img src="${c.img}" alt="${c.alt}" loading="lazy">
 
-  if (!name || name.length > 100) {
-    st.style.display = 'block';
-    st.textContent = 'Masukkan nama donatur yang valid.';
-    return;
-  }
+      <div class="body">
+        <span class="tag">${c.tag}</span>
 
-  if (!Number.isSafeInteger(amount) || amount < 1000) {
-    st.style.display = 'block';
-    st.textContent = 'Minimal donasi adalah Rp1.000.';
-    return;
-  }
+        <h3>${c.name}</h3>
+        <p>${c.desc}</p>
 
-  const campaign = campaigns.find(c => c.id === activeCampaign);
+        <div class="money">
+          <div>
+            Target
+            <strong>${fmt(c.target)}</strong>
+          </div>
+
+          <div style="text-align:right">
+            Status
+            <strong>Terbuka</strong>
+          </div>
+        </div>
+
+        <div class="bar">
+          <span style="width:0%"></span>
+        </div>
+
+        <div style="text-align:right;font-size:10px;color:var(--g)">
+          Terima kasih atas kepedulian Anda
+        </div>
+
+        <button class="btn" type="button"
+          data-campaign-id="${c.id}">
+          ♥ Donasi Sekarang
+        </button>
+      </div>
+    </article>
+  `).join('');
+
+  // Pasang event listener setelah kartu dibuat.
+  container.querySelectorAll('[data-campaign-id]').forEach(button => {
+    button.addEventListener('click', () => {
+      openModal(button.dataset.campaignId);
+    });
+  });
+}
+
+// ======================================================
+// MODAL DAN PILIHAN NOMINAL
+// ======================================================
+
+function openModal(id) {
+  const campaign = campaigns.find(c => c.id === id);
 
   if (!campaign) {
-    st.style.display = 'block';
-    st.textContent = 'Program donasi tidak ditemukan.';
+    alert('Program donasi tidak ditemukan.');
     return;
   }
 
-  submitButton.disabled = true;
-  st.style.display = 'block';
-  st.textContent = 'Menyimpan donasi dan membuat pembayaran...';
+  activeCampaign = id;
+  chosen = 10000;
 
-  try {
-    // 1. Simpan data donasi ke Supabase.
-    const donationResponse = await sb('donations', {
-      method: 'POST',
-      headers: {
-        'Prefer': 'return=representation'
-      },
-      body: JSON.stringify({
-        campaign_id: activeCampaign,
-        donor_name: name,
-        donor_contact: contact || null,
-        amount: amount,
-        payment_status: 'pending',
-        payment_reference: null
-      })
+  document.getElementById('programName').textContent = campaign.name;
+  document.getElementById('custom').value = '';
+
+  document.querySelectorAll('.amount').forEach(button => {
+    button.classList.toggle(
+      'sel',
+      Number(button.dataset.value) === chosen
+    );
+  });
+
+  const status = document.getElementById('formStatus');
+  status.style.display = 'none';
+  status.classList.remove('error');
+  status.textContent = '';
+
+  document.getElementById('donationModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  if (submitting) return;
+
+  document.getElementById('donationModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.amount').forEach(button => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('.amount').forEach(item => {
+      item.classList.remove('sel');
     });
 
-    const donations = await donationResponse.json();
-    const donation = Array.isArray(donations)
-      ? donations[0]
-      : donations;
+    button.classList.add('sel');
+    chosen = Number(button.dataset.value);
+    document.getElementById('custom').value = '';
+  });
+});
 
-    if (!donation || !donation.id) {
-      throw new Error(
-        'Donasi tersimpan atau diproses, tetapi ID donasi tidak diterima.'
-      );
+document.getElementById('custom').addEventListener('input', () => {
+  document.querySelectorAll('.amount').forEach(button => {
+    button.classList.remove('sel');
+  });
+});
+
+document.getElementById('donationModal').addEventListener('click', event => {
+  if (event.target.id === 'donationModal') {
+    closeModal();
+  }
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    closeModal();
+  }
+});
+
+// ======================================================
+// STATUS PESAN
+// ======================================================
+
+function showStatus(message, isError = false) {
+  const status = document.getElementById('formStatus');
+
+  status.textContent = message;
+  status.style.display = 'block';
+  status.classList.toggle('error', isError);
+}
+
+// ======================================================
+// PROSES FORMULIR DAN PEMBAYARAN
+// ======================================================
+
+document.getElementById('donationForm').addEventListener(
+  'submit',
+  async event => {
+    event.preventDefault();
+
+    if (submitting) return;
+
+    const form = event.currentTarget;
+    const submitButton = document.getElementById('submitDonation');
+
+    if (!isConfigured()) {
+      showStatus('Konfigurasi Supabase belum lengkap.', true);
+      return;
     }
 
-    // 2. Minta Supabase membuat transaksi Midtrans.
-    const paymentResponse = await fetch(
-      `${SUPABASE_URL}/functions/v1/midtrans-payment`,
-      {
+    const customValue = document.getElementById('custom').value.trim();
+
+    const amount = customValue !== ''
+      ? Number(customValue)
+      : chosen;
+
+    const name = document.getElementById('name').value.trim();
+    const contact = document.getElementById('contact').value.trim();
+
+    if (!activeCampaign || !campaigns.some(c => c.id === activeCampaign)) {
+      showStatus('Silakan pilih program donasi terlebih dahulu.', true);
+      return;
+    }
+
+    if (!name || name.length > 100) {
+      showStatus('Masukkan nama donatur, maksimal 100 karakter.', true);
+      return;
+    }
+
+    if (contact.length > 120) {
+      showStatus('Kontak terlalu panjang.', true);
+      return;
+    }
+
+    if (!Number.isSafeInteger(amount) || amount < 1000) {
+      showStatus('Minimal donasi adalah Rp1.000.', true);
+      return;
+    }
+
+    submitting = true;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Memproses...';
+
+    showStatus('Menyimpan data donasi...');
+
+    let donationCreated = false;
+
+    try {
+      // LANGKAH 1:
+      // Simpan donasi dengan status pending.
+      // ID donasi diperlukan oleh fungsi pembayaran.
+      const donationResponse = await sb(
+        'donations?select=id',
+        {
+          method: 'POST',
+          headers: {
+            'Prefer': 'return=representation'
+          },
+          body: JSON.stringify({
+            campaign_id: activeCampaign,
+            donor_name: name,
+            donor_contact: contact || null,
+            amount: amount,
+            payment_status: 'pending',
+            payment_reference: null
+          })
+        }
+      );
+
+      const insertedRows = await donationResponse.json();
+
+      const donation = Array.isArray(insertedRows)
+        ? insertedRows[0]
+        : insertedRows;
+
+      if (!donation || !donation.id) {
+        throw new Error(
+          'ID donasi tidak diterima. Periksa izin INSERT dan SELECT pada tabel donations.'
+        );
+      }
+
+      donationCreated = true;
+
+      // LANGKAH 2:
+      // Minta Edge Function membuat transaksi Midtrans.
+      showStatus('Data tersimpan. Membuat transaksi pembayaran...');
+
+      const paymentResponse = await fetch(PAYMENT_FUNCTION, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -153,51 +871,30 @@ document.getElementById('donationForm').addEventListener('submit',async e=>{
         body: JSON.stringify({
           donation_id: donation.id
         })
+      });
+
+      let payment;
+
+      try {
+        payment = await paymentResponse.json();
+      } catch (_) {
+        throw new Error(
+          `Respons pembayaran tidak valid (HTTP ${paymentResponse.status}).`
+        );
       }
-    );
 
-    const payment = await paymentResponse.json();
+      if (!paymentResponse.ok) {
+        throw new Error(
+          payment.error ||
+          `Gagal membuat transaksi (HTTP ${paymentResponse.status}).`
+        );
+      }
 
-    if (!paymentResponse.ok) {
-      throw new Error(
-        payment.error || 'Gagal membuat transaksi pembayaran.'
-      );
-    }
+      if (!payment.success || !payment.redirect_url) {
+        throw new Error(
+          'Transaksi belum menghasilkan URL pembayaran.'
+        );
+      }
 
-    if (!payment.redirect_url) {
-      throw new Error(
-        'URL pembayaran tidak diterima dari Midtrans.'
-      );
-    }
-
-    // 3. Arahkan donatur ke halaman pembayaran Midtrans.
-    st.textContent = 'Transaksi berhasil dibuat. Membuka halaman pembayaran...';
-
-    window.location.assign(payment.redirect_url);
-
-  } catch (err) {
-    console.error('Kesalahan pembayaran:', err);
-
-    st.textContent =
-      'Pembayaran belum berhasil dibuat. ' +
-      err.message +
-      ' Data donasi mungkin sudah tersimpan. Periksa tabel donations sebelum mencoba kembali.';
-      
-    submitButton.disabled = false;
-  }
-});
-document.getElementById('donationModal').addEventListener('click',e=>{if(e.target.id==='donationModal')closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
-async function loadCampaigns(){
- if(!isConfigured()){renderCampaigns();return;}
- try{
-  const response=await fetch(`${SUPABASE_URL}/rest/v1/campaigns?select=id,name,description,target_amount,active&active=eq.true&order=id.asc`,{headers:{apikey:SUPABASE_KEY,Authorization:`Bearer ${SUPABASE_KEY}`}});
-  if(!response.ok) throw new Error(`HTTP ${response.status}`);
-  const rows=await response.json();
-  if(rows.length){
-   campaigns=rows.map(r=>{const d=defaultCampaigns.find(x=>x.id===r.id)||defaultCampaigns[0];return {...d,id:r.id,name:r.name,desc:r.description||d.desc,target:Number(r.target_amount)||d.target};});
-  }
- }catch(err){console.warn('Kampanye memakai data bawaan sementara:',err);}
- renderCampaigns();
-}
-renderCampaigns(); loadCampaigns();
-</script></body></html>
+      // LANGKAH 3:
+      // Arahkan donatu
