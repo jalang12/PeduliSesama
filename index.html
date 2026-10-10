@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#073d30">
-<title>PeduliSesama — Berbagi untuk Negeri</title>
-
-<style>
+<meta name="description" content="PeduliSesama — Berbagi untuk Negeri. Dukung pendidikan dan fasilitas masyarakat yang membutuhkan.">
+<title>PeduliSesama — Berbagi untuk Negeri</title><style>
 :root {
   --green: #087456;
   --dark: #073d30;
@@ -19,6 +17,8 @@
 
 * { box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
   background: var(--bg);
@@ -27,7 +27,13 @@ body {
   line-height: 1.55;
 }
 
+body.modal-open { overflow: hidden; }
+
 a { color: inherit; text-decoration: none; }
+
+button, input { font: inherit; }
+
+button { -webkit-tap-highlight-color: transparent; }
 
 .wrap {
   width: min(1160px, 92%);
@@ -45,13 +51,19 @@ a { color: inherit; text-decoration: none; }
   font-size: 13px;
   cursor: pointer;
   text-align: center;
+  transition: background .2s, transform .2s;
 }
 
-.btn:hover { background: var(--dark); }
+.btn:hover {
+  background: var(--dark);
+}
+
+.btn:active { transform: scale(.98); }
 
 .btn:disabled {
   opacity: .6;
   cursor: wait;
+  transform: none;
 }
 
 header {
@@ -276,6 +288,7 @@ footer {
   background: white;
   border-radius: 17px;
   padding: 22px;
+  box-shadow: 0 20px 70px #0003;
 }
 
 .modalhead {
@@ -287,6 +300,7 @@ footer {
 .modalhead h2 { font-size: 24px; }
 
 .close {
+  flex-shrink: 0;
   border: 0;
   background: #edf3ee;
   border-radius: 50%;
@@ -304,12 +318,20 @@ footer {
 }
 
 .input {
+  display: block;
   width: 100%;
   padding: 12px;
   border: 1px solid #d6e1d8;
   border-radius: 8px;
   font: inherit;
   font-size: 14px;
+  background: white;
+  color: var(--ink);
+}
+
+.input:focus {
+  outline: 2px solid #08745633;
+  border-color: var(--green);
 }
 
 .amounts {
@@ -331,6 +353,7 @@ footer {
 .amount.sel {
   background: var(--green);
   color: white;
+  border-color: var(--green);
 }
 
 .notice {
@@ -347,6 +370,7 @@ footer {
   font-size: 13px;
   margin-top: 12px;
   overflow-wrap: anywhere;
+  white-space: pre-wrap;
 }
 
 .status.error {
@@ -368,251 +392,222 @@ footer {
   .cards { grid-template-columns: 1fr; }
   .card img { height: 210px; }
   .card p { min-height: 0; }
+  .modalbox { padding: 18px; }
 }
-</style>
-</head>
-
-<body>
-
-<header>
+</style></head><body><header>
   <nav class="nav wrap">
-    <a class="brand" href="#">
+    <a class="brand" href="#" aria-label="PeduliSesama, Beranda">
       ♡ PeduliSesama
       <small>Berbagi untuk Negeri</small>
-    </a>
+    </a><div class="links">
+  <a href="#">Beranda</a>
+  <a href="#program">Program Donasi</a>
+  <a href="#tentang">Tentang Kami</a>
+</div>
 
-    <div class="links">
-      <a href="#">Beranda</a>
-      <a href="#program">Program Donasi</a>
-      <a href="#tentang">Tentang Kami</a>
-    </div>
+<a class="btn" href="#program">Donasi Sekarang</a>
 
-    <a class="btn" href="#program">Donasi Sekarang</a>
   </nav>
-</header>
-
-<main>
+</header><main>
   <div class="hero">
     <div class="wrap hero-content">
-      <div class="eyebrow">BERSAMA WUJUDKAN PERUBAHAN</div>
+      <div class="eyebrow">BERSAMA WUJUDKAN PERUBAHAN</div>  <h1>Mereka juga<br>punya <span>mimpi...</span></h1>
 
-      <h1>Mereka juga<br>punya <span>mimpi...</span></h1>
+  <p>
+    Dukung pendidikan, perbaikan fasilitas ibadah, dan ruang belajar
+    yang lebih aman bagi masyarakat yang membutuhkan.
+  </p>
 
-      <p>
-        Dukung pendidikan, perbaikan fasilitas ibadah, dan ruang belajar
-        yang lebih aman bagi masyarakat yang membutuhkan.
-      </p>
-
-      <div class="row">
-        <a class="btn" href="#program">♥ Donasi Sekarang</a>
-        <a class="btn outline" href="#tentang">Tentang Program</a>
-      </div>
-    </div>
+  <div class="row">
+    <a class="btn" href="#program">♥ Donasi Sekarang</a>
+    <a class="btn outline" href="#tentang">Tentang Program</a>
   </div>
+</div>
 
-  <section id="program">
+  </div>  <section id="program">
     <div class="wrap">
       <div class="kicker">PROGRAM DONASI KAMI</div>
       <h2>Pilih Program yang Bisa Anda Dukung</h2>
       <p class="sub">
         Pilih program, tentukan nominal, lalu lanjutkan ke halaman pembayaran.
-      </p>
+      </p>  <div class="cards" id="campaignCards">
 
-      <!-- Ketiga kartu ditulis langsung di HTML. -->
-      <div class="cards" id="campaignCards">
+    <article class="card">
+      <img
+        src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=85"
+        alt="Anak-anak belajar"
+        loading="lazy">
 
-        <article class="card">
-          <img
-            src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=85"
-            alt="Anak-anak belajar"
-            loading="lazy">
+      <div class="card-body">
+        <span class="tag">PENDIDIKAN</span>
+        <h3>Bantu Pendidikan Anak Negeri</h3>
+        <p>
+          Dukung penyediaan buku, alat tulis, dan perbaikan fasilitas belajar.
+        </p>
 
-          <div class="card-body">
-            <span class="tag">PENDIDIKAN</span>
-            <h3>Bantu Pendidikan Anak Negeri</h3>
-            <p>
-              Dukung penyediaan buku, alat tulis, dan perbaikan fasilitas belajar.
-            </p>
+        <div class="money">
+          Target
+          <strong>Rp50.000.000</strong>
+        </div>
 
-            <div class="money">
-              Target
-              <strong>Rp50.000.000</strong>
-            </div>
-
-            <button class="btn" type="button"
-                    data-campaign="pendidikan">
-              ♥ Donasi Sekarang
-            </button>
-          </div>
-        </article>
-
-        <article class="card">
-          <img
-            src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=900&q=85"
-            alt="Tempat ibadah"
-            loading="lazy">
-
-          <div class="card-body">
-            <span class="tag">MUSHOLA</span>
-            <h3>Renovasi Mushola yang Membutuhkan</h3>
-            <p>
-              Bantu perbaikan atap, dinding, lantai, dan fasilitas mushola.
-            </p>
-
-            <div class="money">
-              Target
-              <strong>Rp30.000.000</strong>
-            </div>
-
-            <button class="btn" type="button"
-                    data-campaign="mushola">
-              ♥ Donasi Sekarang
-            </button>
-          </div>
-        </article>
-
-        <article class="card">
-          <img
-            src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=900&q=85"
-            alt="Ruang kelas"
-            loading="lazy">
-
-          <div class="card-body">
-            <span class="tag">RUANG KELAS</span>
-            <h3>Perbaikan Ruang Kelas</h3>
-            <p>
-              Dukung perbaikan meja, kursi, dan ruang belajar agar lebih aman.
-            </p>
-
-            <div class="money">
-              Target
-              <strong>Rp40.000.000</strong>
-            </div>
-
-            <button class="btn" type="button"
-                    data-campaign="kelas">
-              ♥ Donasi Sekarang
-            </button>
-          </div>
-        </article>
-
+        <button class="btn" type="button" data-campaign="pendidikan">
+          ♥ Donasi Sekarang
+        </button>
       </div>
+    </article>
 
-      <p class="fine">
-        Pembayaran baru dianggap berhasil setelah dikonfirmasi melalui
-        notifikasi pembayaran yang valid.
-      </p>
-    </div>
-  </section>
+    <article class="card">
+      <img
+        src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=900&q=85"
+        alt="Tempat ibadah"
+        loading="lazy">
 
-  <div class="wrap" id="tentang">
-    <div class="trust">
-      <h2>Kepercayaan adalah amanah.</h2>
+      <div class="card-body">
+        <span class="tag">MUSHOLA</span>
+        <h3>Renovasi Mushola yang Membutuhkan</h3>
+        <p>
+          Bantu perbaikan atap, dinding, lantai, dan fasilitas mushola.
+        </p>
 
-      <p>
-        PeduliSesama berupaya mencatat donasi dan status pembayaran secara
-        bertanggung jawab. Pastikan identitas pengelola dan persyaratan
-        penggalangan dana telah dipenuhi sebelum menerima dana sungguhan.
-      </p>
+        <div class="money">
+          Target
+          <strong>Rp30.000.000</strong>
+        </div>
 
-      <a class="btn" href="admin.html">Panel Admin</a>
-    </div>
+        <button class="btn" type="button" data-campaign="mushola">
+          ♥ Donasi Sekarang
+        </button>
+      </div>
+    </article>
+
+    <article class="card">
+      <img
+        src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=900&q=85"
+        alt="Ruang kelas"
+        loading="lazy">
+
+      <div class="card-body">
+        <span class="tag">RUANG KELAS</span>
+        <h3>Perbaikan Ruang Kelas</h3>
+        <p>
+          Dukung perbaikan meja, kursi, dan ruang belajar agar lebih aman.
+        </p>
+
+        <div class="money">
+          Target
+          <strong>Rp40.000.000</strong>
+        </div>
+
+        <button class="btn" type="button" data-campaign="kelas">
+          ♥ Donasi Sekarang
+        </button>
+      </div>
+    </article>
+
   </div>
-</main>
 
-<footer>
+  <p class="fine">
+    Pembayaran baru dianggap berhasil setelah dikonfirmasi melalui
+    notifikasi pembayaran yang valid.
+  </p>
+</div>
+
+  </section>  <div class="wrap" id="tentang">
+    <div class="trust">
+      <h2>Kepercayaan adalah amanah.</h2>  <p>
+    PeduliSesama berupaya mencatat donasi dan status pembayaran secara
+    bertanggung jawab. Pastikan identitas pengelola dan persyaratan
+    penggalangan dana telah dipenuhi sebelum menerima dana sungguhan.
+  </p>
+
+  <a class="btn" href="admin.html">Panel Admin</a>
+</div>
+
+  </div>
+</main><footer>
   <div class="wrap foot">
     <strong>♡ PeduliSesama · Berbagi untuk Negeri</strong>
     <span>© 2026 · PeduliSesama</span>
     <a href="admin.html">Panel Admin</a>
   </div>
-</footer>
-
-<!-- FORMULIR DONASI -->
-<div class="modal" id="donationModal"
+</footer><div class="modal" id="donationModal"
      role="dialog" aria-modal="true"
-     aria-labelledby="donationTitle">
-
-  <div class="modalbox">
+     aria-labelledby="donationTitle"
+     aria-hidden="true">  <div class="modalbox">
     <div class="modalhead">
       <div>
         <div class="kicker">FORMULIR DONASI</div>
         <h2 id="donationTitle">Berbagi kebaikan</h2>
         <p id="programName" class="sub"></p>
-      </div>
-
-      <button class="close" id="closeModal" type="button"
-              aria-label="Tutup">×</button>
-    </div>
-
-    <form id="donationForm">
-      <label class="label" for="name">Nama donatur</label>
-      <input class="input" id="name" maxlength="100"
-             autocomplete="name" required
-             placeholder="Nama Anda">
-
-      <label class="label" for="contact">Email/WhatsApp (opsional)</label>
-      <input class="input" id="contact" maxlength="120"
-             placeholder="Kontak Anda">
-
-      <span class="label">Pilih nominal</span>
-
-      <div class="amounts">
-        <button type="button" class="amount sel" data-value="10000">
-          Rp10.000
-        </button>
-
-        <button type="button" class="amount" data-value="25000">
-          Rp25.000
-        </button>
-
-        <button type="button" class="amount" data-value="50000">
-          Rp50.000
-        </button>
-
-        <button type="button" class="amount" data-value="100000">
-          Rp100.000
-        </button>
-      </div>
-
-      <label class="label" for="custom">Nominal lain (Rupiah)</label>
-      <input class="input" id="custom" type="number"
-             min="1000" step="1000" inputmode="numeric"
-             placeholder="Contoh: 150000">
-
-      <p class="notice">
-        Kamu akan diarahkan ke halaman pembayaran Midtrans Sandbox
-        jika konfigurasi transaksi berhasil.
-      </p>
-
-      <button class="btn" id="submitDonation" type="submit"
-              style="width:100%;margin-top:8px">
-        Lanjutkan ke Pembayaran
-      </button>
-
-      <div id="formStatus" class="status"
-           role="status" aria-live="polite"></div>
-    </form>
-  </div>
+      </div>  <button class="close" id="closeModal" type="button"
+          aria-label="Tutup">×</button>
 </div>
 
-<script>
+<form id="donationForm">
+  <label class="label" for="name">Nama donatur</label>
+  <input class="input" id="name" name="name"
+         maxlength="100" autocomplete="name"
+         required placeholder="Nama Anda">
+
+  <label class="label" for="contact">Email/WhatsApp (opsional)</label>
+  <input class="input" id="contact" name="contact"
+         maxlength="120" autocomplete="email"
+         placeholder="Kontak Anda">
+
+  <span class="label">Pilih nominal</span>
+
+  <div class="amounts">
+    <button type="button" class="amount sel" data-value="10000">
+      Rp10.000
+    </button>
+
+    <button type="button" class="amount" data-value="25000">
+      Rp25.000
+    </button>
+
+    <button type="button" class="amount" data-value="50000">
+      Rp50.000
+    </button>
+
+    <button type="button" class="amount" data-value="100000">
+      Rp100.000
+    </button>
+  </div>
+
+  <label class="label" for="custom">Nominal lain (Rupiah)</label>
+  <input class="input" id="custom" name="custom"
+         type="number" min="1000" step="1000"
+         inputmode="numeric" placeholder="Contoh: 150000">
+
+  <p class="notice">
+    Kamu akan diarahkan ke halaman pembayaran Midtrans Sandbox
+    jika konfigurasi transaksi berhasil.
+  </p>
+
+  <button class="btn" id="submitDonation" type="submit"
+          style="width:100%;margin-top:8px">
+    Lanjutkan ke Pembayaran
+  </button>
+
+  <div id="formStatus" class="status"
+       role="status" aria-live="polite"></div>
+</form>
+
+  </div>
+</div><script>
 'use strict';
 
 // ================================================
-// KONFIGURASI SUPABASE
+// KONFIGURASI
 // ================================================
 
-const SUPABASE_URL =
-  'https://jghscfvxpollihkdpzxc.supabase.co';
+const SUPABASE_URL = 'https://jghscfvxpollihkdpzxc.supabase.co';
 
-const SUPABASE_KEY =
-  'sb_publishable__0YZI4z45e4J99Ny0GoabA_MQkcevdJ';
+const SUPABASE_KEY = 'sb_publishable__0YZI4z45e4J99Ny0GoabA_MQkcevdJ';
 
 const PAYMENT_FUNCTION =
   SUPABASE_URL + '/functions/v1/midtrans-payment';
 
-// ID program mengikuti konfigurasi program sebelumnya.
 const campaigns = {
   pendidikan: {
     name: 'Bantu Pendidikan Anak Negeri'
@@ -633,9 +628,10 @@ const donationForm = document.getElementById('donationForm');
 const donationModal = document.getElementById('donationModal');
 const submitButton = document.getElementById('submitDonation');
 const formStatus = document.getElementById('formStatus');
+const customInput = document.getElementById('custom');
 
 // ================================================
-// STATUS PESAN
+// PESAN STATUS
 // ================================================
 
 function showStatus(message, isError = false) {
@@ -644,8 +640,42 @@ function showStatus(message, isError = false) {
   formStatus.classList.toggle('error', isError);
 }
 
+function hideStatus() {
+  formStatus.textContent = '';
+  formStatus.style.display = 'none';
+  formStatus.classList.remove('error');
+}
+
+function describeError(body, status) {
+  let message = '';
+
+  if (typeof body === 'string') {
+    try {
+      body = JSON.parse(body);
+    } catch (_) {
+      message = body;
+    }
+  }
+
+  if (body && typeof body === 'object') {
+    message =
+      body.message ||
+      body.error_description ||
+      body.error ||
+      body.details ||
+      body.hint ||
+      '';
+  }
+
+  if (!message) {
+    message = 'Server tidak memberikan keterangan tambahan.';
+  }
+
+  return 'HTTP ' + status + ': ' + String(message).slice(0, 700);
+}
+
 // ================================================
-// BUKA FORMULIR
+// BUKA DAN TUTUP FORMULIR
 // ================================================
 
 function openModal(campaignId) {
@@ -659,10 +689,10 @@ function openModal(campaignId) {
   activeCampaign = campaignId;
   chosenAmount = 10000;
 
-  document.getElementById('programName').textContent =
-    campaign.name;
-
-  document.getElementById('custom').value = '';
+  document.getElementById('programName').textContent = campaign.name;
+  document.getElementById('name').value = '';
+  document.getElementById('contact').value = '';
+  customInput.value = '';
 
   document.querySelectorAll('.amount').forEach(button => {
     button.classList.toggle(
@@ -671,24 +701,29 @@ function openModal(campaignId) {
     );
   });
 
-  formStatus.style.display = 'none';
-  formStatus.classList.remove('error');
+  hideStatus();
 
   submitButton.disabled = false;
   submitButton.textContent = 'Lanjutkan ke Pembayaran';
 
   donationModal.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  donationModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+
+  setTimeout(() => {
+    document.getElementById('name').focus();
+  }, 50);
 }
 
 function closeModal() {
   if (submitting) return;
 
   donationModal.classList.remove('open');
-  document.body.style.overflow = '';
+  donationModal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
 }
 
-// Pasang tombol program setelah HTML tersedia.
+// Event tombol program.
 document.querySelectorAll('[data-campaign]').forEach(button => {
   button.addEventListener('click', () => {
     openModal(button.dataset.campaign);
@@ -711,7 +746,7 @@ document.addEventListener('keydown', event => {
 });
 
 // ================================================
-// PILIH NOMINAL
+// PILIH NOMINAL DONASI
 // ================================================
 
 document.querySelectorAll('.amount').forEach(button => {
@@ -722,20 +757,21 @@ document.querySelectorAll('.amount').forEach(button => {
 
     button.classList.add('sel');
     chosenAmount = Number(button.dataset.value);
-
-    document.getElementById('custom').value = '';
+    customInput.value = '';
+    hideStatus();
   });
 });
 
-document.getElementById('custom')
-  .addEventListener('input', () => {
-    document.querySelectorAll('.amount').forEach(button => {
-      button.classList.remove('sel');
-    });
+customInput.addEventListener('input', () => {
+  document.querySelectorAll('.amount').forEach(button => {
+    button.classList.remove('sel');
   });
 
+  hideStatus();
+});
+
 // ================================================
-// KONEKSI SUPABASE
+// SIMPAN DONASI KE SUPABASE
 // ================================================
 
 async function createDonation(data) {
@@ -745,7 +781,6 @@ async function createDonation(data) {
       method: 'POST',
       headers: {
         'apikey': SUPABASE_KEY,
-        'Authorization': 'Bearer ' + SUPABASE_KEY,
         'Content-Type': 'application/json',
         'Prefer': 'return=representation'
       },
@@ -756,12 +791,11 @@ async function createDonation(data) {
   const responseText = await response.text();
 
   if (!response.ok) {
-    console.error('Supabase insert error:', responseText);
+    console.error('Supabase insert error:', response.status, responseText);
 
     throw new Error(
-      'Supabase menolak penyimpanan donasi (HTTP ' +
-      response.status +
-      '). Periksa izin tabel donations.'
+      'Gagal menyimpan data donasi. ' +
+      describeError(responseText, response.status)
     );
   }
 
@@ -771,7 +805,7 @@ async function createDonation(data) {
     rows = JSON.parse(responseText);
   } catch (_) {
     throw new Error(
-      'Respons Supabase tidak berisi data JSON yang valid.'
+      'Supabase tidak mengembalikan JSON yang valid.'
     );
   }
 
@@ -779,8 +813,8 @@ async function createDonation(data) {
 
   if (!donation || !donation.id) {
     throw new Error(
-      'ID donasi tidak diterima. Pastikan policy SELECT mengizinkan ' +
-      'pengembalian baris yang baru dibuat.'
+      'Data terkirim, tetapi ID donasi tidak diterima. ' +
+      'Periksa kebijakan INSERT dan pengembalian data pada tabel donations.'
     );
   }
 
@@ -788,7 +822,7 @@ async function createDonation(data) {
 }
 
 // ================================================
-// MINTA TRANSAKSI MIDTRANS
+// BUAT TRANSAKSI MIDTRANS MELALUI EDGE FUNCTION
 // ================================================
 
 async function createPayment(donationId) {
@@ -796,37 +830,45 @@ async function createPayment(donationId) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'apikey': SUPABASE_KEY,
-      'Authorization': 'Bearer ' + SUPABASE_KEY
+      'apikey': SUPABASE_KEY
     },
     body: JSON.stringify({
       donation_id: donationId
     })
   });
 
-  let result;
+  const responseText = await response.text();
+  let result = {};
 
   try {
-    result = await response.json();
+    result = responseText ? JSON.parse(responseText) : {};
   } catch (_) {
+    console.error('Payment function returned non-JSON:', responseText);
+
     throw new Error(
-      'Respons fungsi pembayaran tidak valid (HTTP ' +
-      response.status + ').'
+      'Respons fungsi pembayaran bukan JSON. HTTP ' +
+      response.status + '. Periksa Edge Function dan log-nya.'
     );
   }
 
   if (!response.ok) {
-    console.error('Payment function error:', result);
+    console.error(
+      'Payment function error:',
+      response.status,
+      result
+    );
 
     throw new Error(
-      result.error ||
-      'Fungsi pembayaran gagal (HTTP ' + response.status + ').'
+      'Fungsi pembayaran gagal. ' +
+      describeError(result, response.status)
     );
   }
 
   if (!result.success || !result.redirect_url) {
+    console.error('Unexpected payment response:', result);
+
     throw new Error(
-      'URL pembayaran tidak diterima dari fungsi Midtrans.'
+      'Fungsi pembayaran tidak mengembalikan redirect_url yang valid.'
     );
   }
 
@@ -834,7 +876,7 @@ async function createPayment(donationId) {
 }
 
 // ================================================
-// PROSES FORMULIR DONASI
+// KIRIM FORMULIR
 // ================================================
 
 donationForm.addEventListener('submit', async event => {
@@ -844,7 +886,7 @@ donationForm.addEventListener('submit', async event => {
 
   const name = document.getElementById('name').value.trim();
   const contact = document.getElementById('contact').value.trim();
-  const custom = document.getElementById('custom').value.trim();
+  const custom = customInput.value.trim();
 
   const amount = custom !== ''
     ? Number(custom)
@@ -870,48 +912,9 @@ donationForm.addEventListener('submit', async event => {
     return;
   }
 
-  submitting = true;
-  submitButton.disabled = true;
-  submitButton.textContent = 'Memproses...';
+  if (amount > 1000000000) {
+    showStatus('Nominal terlalu besar. Silakan masukkan nominal yang valid.', true);
+    return;
+  }
 
-  let donationSaved = false;
-
-  try {
-    showStatus('Menyimpan data donasi...');
-
-    // 1. Simpan donasi dengan status pending.
-    const donation = await createDonation({
-      campaign_id: activeCampaign,
-      donor_name: name,
-      donor_contact: contact || null,
-      amount: amount,
-      payment_status: 'pending',
-      payment_reference: null
-    });
-
-    donationSaved = true;
-
-    // 2. Buat transaksi melalui Edge Function.
-    showStatus('Donasi tersimpan. Membuat transaksi pembayaran...');
-
-    const payment = await createPayment(donation.id);
-
-    // 3. Buka halaman pembayaran resmi dari respons server.
-    showStatus('Transaksi dibuat. Membuka halaman pembayaran...');
-
-    window.location.assign(payment.redirect_url);
-
-  } catch (error) {
-    console.error('Donation process error:', error);
-
-    if (donationSaved) {
-      showStatus(
-        'Data donasi sudah tersimpan, tetapi transaksi belum berhasil dibuat. ' +
-        error.message +
-        ' Jangan kirim formulir berulang kali sebelum memeriksa data donasi.',
-        true
-      );
-    } else {
-      showStatus(
-        'Donasi belum berhasil diproses. ' + error.message,
-        true
+  submi
