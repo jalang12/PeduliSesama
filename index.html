@@ -774,23 +774,34 @@ customInput.addEventListener('input', () => {
 // ================================================
 
 async function createDonation(data) {
+  const donationId = crypto.randomUUID();
+
+  const payload = {
+    id: donationId,
+    ...data
+  };
+
   const response = await fetch(
-    SUPABASE_URL + '/rest/v1/donations?select=id',
+    SUPABASE_URL + '/rest/v1/donations',
     {
       method: 'POST',
       headers: {
         'apikey': SUPABASE_KEY,
         'Content-Type': 'application/json',
-        'Prefer': 'return=representation'
+        'Prefer': 'return=minimal'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(payload)
     }
   );
 
   const responseText = await response.text();
 
   if (!response.ok) {
-    console.error('Supabase insert error:', response.status, responseText);
+    console.error(
+      'Supabase insert error:',
+      response.status,
+      responseText
+    );
 
     throw new Error(
       'Gagal menyimpan data donasi. ' +
@@ -798,28 +809,10 @@ async function createDonation(data) {
     );
   }
 
-  let rows;
-
-  try {
-    rows = JSON.parse(responseText);
-  } catch (_) {
-    throw new Error(
-      'Supabase tidak mengembalikan JSON yang valid.'
-    );
-  }
-
-  const donation = Array.isArray(rows) ? rows[0] : rows;
-
-  if (!donation || !donation.id) {
-    throw new Error(
-      'Data terkirim, tetapi ID donasi tidak diterima. ' +
-      'Periksa kebijakan INSERT dan pengembalian data pada tabel donations.'
-    );
-  }
-
-  return donation;
+  return {
+    id: donationId
+  };
 }
-
 // ================================================
 // BUAT TRANSAKSI MIDTRANS MELALUI EDGE FUNCTION
 // ================================================
