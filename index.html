@@ -70,10 +70,121 @@ document.getElementById('donationForm').addEventListener('submit',async e=>{
    amount:Math.round(amount), payment_status:'pending', payment_reference:null
   })});
   st.textContent=`Formulir donasi ${fmt(amount)} berhasil dikirim dan tercatat dengan status MENUNGGU VERIFIKASI. Ini belum merupakan pembayaran; silakan ikuti instruksi pembayaran resmi dari pengelola.`;
-  document.getElementById('donationForm').querySelector('button[type="submit"],button:not([type])').disabled=true;
- }catch(err){
-  st.textContent='Belum berhasil mengirim data ke database. Periksa Project URL, Publishable key, dan kebijakan RLS Supabase. Detail: '+err.message;
- }
+  document.getElementById('donationForm').addEventListener('submit', async e => {
+  e.preventDefault();
+
+  const form = e.currentTarget;
+  const st = document.getElementById('formStatus');
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  if (!isConfigured()) {
+    st.style.display = 'block';
+    st.textContent = 'Konfigurasi Supabase belum lengkap.';
+    return;
+  }
+
+  const custom = Number(document.getElementById('custom').value);
+  const amount = custom > 0 ? custom : chosen;
+  const name = document.getElementById('name').value.trim();
+  const contact = document.getElementById('contact').value.trim();
+
+  if (!name || name.length > 100) {
+    st.style.display = 'block';
+    st.textContent = 'Masukkan nama donatur yang valid.';
+    return;
+  }
+
+  if (!Number.isSafeInteger(amount) || amount < 1000) {
+    st.style.display = 'block';
+    st.textContent = 'Minimal donasi adalah Rp1.000.';
+    return;
+  }
+
+  const campaign = campaigns.find(c => c.id === activeCampaign);
+
+  if (!campaign) {
+    st.style.display = 'block';
+    st.textContent = 'Program donasi tidak ditemukan.';
+    return;
+  }
+
+  submitButton.disabled = true;
+  st.style.display = 'block';
+  st.textContent = 'Menyimpan donasi dan membuat pembayaran...';
+
+  try {
+    // 1. Simpan data donasi ke Supabase.
+    const donationResponse = await sb('donations', {
+      method: 'POST',
+      headers: {
+        'Prefer': 'return=representation'
+      },
+      body: JSON.stringify({
+        campaign_id: activeCampaign,
+        donor_name: name,
+        donor_contact: contact || null,
+        amount: amount,
+        payment_status: 'pending',
+        payment_reference: null
+      })
+    });
+
+    const donations = await donationResponse.json();
+    const donation = Array.isArray(donations)
+      ? donations[0]
+      : donations;
+
+    if (!donation || !donation.id) {
+      throw new Error(
+        'Donasi tersimpan atau diproses, tetapi ID donasi tidak diterima.'
+      );
+    }
+
+    // 2. Minta Supabase membuat transaksi Midtrans.
+    const paymentResponse = await fetch(
+      `${SUPABASE_URL}/functions/v1/midtrans-payment`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`
+        },
+        body: JSON.stringify({
+          donation_id: donation.id
+        })
+      }
+    );
+
+    const payment = await paymentResponse.json();
+
+    if (!paymentResponse.ok) {
+      throw new Error(
+        payment.error || 'Gagal membuat transaksi pembayaran.'
+      );
+    }
+
+    if (!payment.redirect_url) {
+      throw new Error(
+        'URL pembayaran tidak diterima dari Midtrans.'
+      );
+    }
+
+    // 3. Arahkan donatur ke halaman pembayaran Midtrans.
+    st.textContent = 'Transaksi berhasil dibuat. Membuka halaman pembayaran...';
+
+    window.location.assign(payment.redirect_url);
+
+  } catch (err) {
+    console.error('Kesalahan pembayaran:', err);
+
+    st.textContent =
+      'Pembayaran belum berhasil dibuat. ' +
+      err.message +
+      ' Data donasi mungkin sudah tersimpan. Periksa tabel donations sebelum mencoba kembali.';
+      
+    submitButton.disabled = false;
+  }
 });
 document.getElementById('donationModal').addEventListener('click',e=>{if(e.target.id==='donationModal')closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 async function loadCampaigns(){
