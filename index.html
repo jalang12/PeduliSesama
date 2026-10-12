@@ -1425,7 +1425,122 @@ async function loadCampaignProgress() {
 
 loadCampaignProgress();
 setInterval(loadCampaignProgress, 60000);
+// ===== SLIDER PEDULISESAMA =====
+(function () {
+  const slider = document.getElementById("heroSlider");
 
+  if (!slider) return;
+
+  const slides = Array.from(
+    slider.querySelectorAll(".hero-slide")
+  );
+
+  const dots = Array.from(
+    slider.querySelectorAll(".slider-dot")
+  );
+
+  const prevButton = slider.querySelector(".slider-prev");
+  const nextButton = slider.querySelector(".slider-next");
+
+  if (slides.length === 0) return;
+
+  let currentIndex = 0;
+  let autoplayTimer = null;
+  let touchStartX = 0;
+
+  function showSlide(index) {
+    currentIndex = (index + slides.length) % slides.length;
+
+    slides.forEach(function (slide, i) {
+      slide.classList.toggle("active", i === currentIndex);
+    });
+
+    dots.forEach(function (dot, i) {
+      dot.classList.toggle("active", i === currentIndex);
+      dot.setAttribute(
+        "aria-pressed",
+        i === currentIndex ? "true" : "false"
+      );
+    });
+  }
+
+  function nextSlide() {
+    showSlide(currentIndex + 1);
+  }
+
+  function prevSlide() {
+    showSlide(currentIndex - 1);
+  }
+
+  function stopAutoplay() {
+    if (autoplayTimer) {
+      clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    }
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+
+    if (slides.length > 1) {
+      autoplayTimer = setInterval(nextSlide, 5000);
+    }
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener("click", function () {
+      nextSlide();
+      startAutoplay();
+    });
+  }
+
+  if (prevButton) {
+    prevButton.addEventListener("click", function () {
+      prevSlide();
+      startAutoplay();
+    });
+  }
+
+  dots.forEach(function (dot, index) {
+    dot.addEventListener("click", function () {
+      showSlide(index);
+      startAutoplay();
+    });
+  });
+
+  slider.addEventListener("mouseenter", stopAutoplay);
+  slider.addEventListener("mouseleave", startAutoplay);
+
+  slider.addEventListener(
+    "touchstart",
+    function (event) {
+      touchStartX = event.changedTouches[0].screenX;
+    },
+    { passive: true }
+  );
+
+  slider.addEventListener(
+    "touchend",
+    function (event) {
+      const touchEndX = event.changedTouches[0].screenX;
+      const distance = touchEndX - touchStartX;
+
+      if (Math.abs(distance) > 50) {
+        if (distance < 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+
+        startAutoplay();
+      }
+    },
+    { passive: true }
+  );
+
+  showSlide(0);
+  startAutoplay();
+})();
 </script>
 </body>
 </html>
