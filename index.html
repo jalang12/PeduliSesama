@@ -19,7 +19,6 @@
 }
 
 * { box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -31,11 +30,8 @@ body {
 }
 
 body.modal-open { overflow: hidden; }
-
 a { color: inherit; text-decoration: none; }
-
 button, input { font: inherit; }
-
 button { cursor: pointer; }
 
 .wrap {
@@ -57,11 +53,7 @@ button { cursor: pointer; }
 }
 
 .btn:hover { background: var(--dark); }
-
-.btn:disabled {
-  opacity: .6;
-  cursor: wait;
-}
+.btn:disabled { opacity: .6; cursor: wait; }
 
 header {
   position: absolute;
@@ -98,15 +90,13 @@ header {
   font-size: 12px;
 }
 
-.hero {
-  /* ===== SLIDER HERO PEDULISESAMA ===== */
-
 .hero.slider {
   position: relative;
   min-height: 500px;
   overflow: hidden;
   isolation: isolate;
   background: #123b2c;
+  color: white;
 }
 
 .hero-slide {
@@ -121,7 +111,7 @@ header {
   background-repeat: no-repeat;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.8s ease, visibility 0.8s ease;
+  transition: opacity .8s ease, visibility .8s ease;
   z-index: 0;
 }
 
@@ -136,103 +126,6 @@ header {
   position: relative;
   z-index: 2;
   width: 100%;
-}
-
-.slider-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 5;
-  width: 44px;
-  height: 44px;
-  border: 1px solid rgba(255,255,255,.65);
-  border-radius: 50%;
-  background: rgba(0,0,0,.25);
-  color: #fff;
-  font-size: 23px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background .25s ease;
-}
-
-.slider-arrow:hover {
-  background: rgba(0,0,0,.6);
-}
-
-.slider-prev {
-  left: 20px;
-}
-
-.slider-next {
-  right: 20px;
-}
-
-.slider-dots {
-  position: absolute;
-  bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.slider-dot {
-  width: 9px;
-  height: 9px;
-  padding: 0;
-  border: none;
-  border-radius: 20px;
-  background: rgba(255,255,255,.55);
-  cursor: pointer;
-  transition: width .25s ease, background .25s ease;
-}
-
-.slider-dot.active {
-  width: 25px;
-  background: #fff;
-}
-
-@media (max-width: 600px) {
-  .hero.slider,
-  .hero-slide {
-    min-height: 470px;
-  }
-
-  .hero-slide {
-    padding: 65px 0 60px;
-  }
-
-  .slider-arrow {
-    width: 36px;
-    height: 36px;
-    font-size: 18px;
-  }
-
-  .slider-prev {
-    left: 10px;
-  }
-
-  .slider-next {
-    right: 10px;
-  }
-
-  .slider-dots {
-    bottom: 15px;
-  }
-}
-  min-height: 450px;
-  display: flex;
-  align-items: center;
-  padding-top: 55px;
-  color: white;
-  background:
-    linear-gradient(90deg,#081710ed,#081710ad 55%,#08171030),
-    url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1800&q=85')
-    center/cover;
 }
 
 .hero-content {
@@ -272,6 +165,52 @@ header {
 .outline {
   background: transparent;
   border: 1px solid white;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255,255,255,.65);
+  border-radius: 50%;
+  background: rgba(0,0,0,.25);
+  color: #fff;
+  font-size: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-arrow:hover { background: rgba(0,0,0,.6); }
+.slider-prev { left: 20px; }
+.slider-next { right: 20px; }
+
+.slider-dots {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  gap: 10px;
+}
+
+.slider-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 20px;
+  background: rgba(255,255,255,.55);
+  transition: width .25s ease, background .25s ease;
+}
+
+.slider-dot.active {
+  width: 25px;
+  background: #fff;
 }
 
 section { padding: 42px 0 55px; }
@@ -408,6 +347,98 @@ h2 {
   margin: 10px auto 20px;
   color: #d7e7de;
   font-size: 13px;
+}
+
+.transparency { background: #fff; }
+
+.transparency-intro {
+  max-width: 720px;
+  margin-bottom: 26px;
+}
+
+.report-list {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 18px;
+}
+
+.report-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 20px;
+  box-shadow: 0 5px 16px #14352208;
+  min-width: 0;
+}
+
+.report-tag {
+  display: inline-block;
+  background: var(--mint);
+  color: var(--green);
+  border-radius: 5px;
+  padding: 5px 9px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.report-card h3 {
+  margin: 12px 0 8px;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.report-date {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.report-description {
+  color: #45574e;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+.report-amount {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.report-amount strong {
+  display: block;
+  color: var(--dark);
+  font-size: 21px;
+  margin-top: 3px;
+}
+
+.report-receipt {
+  display: inline-block;
+  margin-top: 15px;
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.report-state {
+  border: 1px dashed #cbd8ce;
+  border-radius: 12px;
+  padding: 24px;
+  color: var(--muted);
+  text-align: center;
+  font-size: 13px;
+  background: #fbfcfa;
+}
+
+.report-disclaimer {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 12px;
 }
 
 footer {
@@ -563,13 +594,25 @@ footer {
 @media(max-width:760px) {
   .links { display: none; }
   .cards { grid-template-columns: 1fr 1fr; }
-  .hero { background-position: 60% center; }
+  .report-list { grid-template-columns: 1fr; }
+}
+
+@media(max-width:600px) {
+  .hero.slider, .hero-slide { min-height: 470px; }
+  .hero-slide { padding: 65px 0 60px; }
+  .slider-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+  .slider-prev { left: 10px; }
+  .slider-next { right: 10px; }
+  .slider-dots { bottom: 15px; }
 }
 
 @media(max-width:520px) {
   .brand { font-size: 19px; }
   .nav .btn { font-size: 11px; padding: 9px; }
-  .hero { min-height: 450px; }
   .hero h1 { font-size: 43px; }
   .cards { grid-template-columns: 1fr; }
   .card img { height: 210px; }
@@ -591,6 +634,7 @@ footer {
     <div class="links">
       <a href="#">Beranda</a>
       <a href="#program">Program Donasi</a>
+      <a href="#transparansi">Transparansi</a>
       <a href="#tentang">Tentang Kami</a>
     </div>
 
@@ -600,308 +644,169 @@ footer {
 
 <main>
 
-<div class="hero slider" id="heroSlider">  <div class="hero-slide active"
-       style="background-image: linear-gradient(90deg,rgba(5,30,20,.88),rgba(5,30,20,.25)),url('https://images.unsplash.com/photo-1643216710579-a7500b9f2407?auto=format&fit=crop&w=1800&q=85')"><div class="wrap hero-content">
-  <div class="eyebrow">BERSAMA WUJUDKAN PERUBAHAN</div>
+<div class="hero slider" id="heroSlider">
 
-  <h1>Masa depan<br>dimulai dari <span>pendidikan.</span></h1>
-
-  <p>
-    Bantu anak-anak Indonesia mendapatkan kesempatan belajar
-    dan meraih cita-cita mereka.
-  </p>
-
-  <div class="row">
-    <a class="btn" href="#program">♥ Donasi Sekarang</a>
-    <a class="btn outline" href="#program">Lihat Program</a>
+  <div class="hero-slide active"
+       style="background-image:linear-gradient(90deg,rgba(5,30,20,.88),rgba(5,30,20,.25)),url('https://images.unsplash.com/photo-1643216710579-a7500b9f2407?auto=format&fit=crop&w=1800&q=85')">
+    <div class="wrap hero-content">
+      <div class="eyebrow">BERSAMA WUJUDKAN PERUBAHAN</div>
+      <h1>Masa depan<br>dimulai dari <span>pendidikan.</span></h1>
+      <p>Bantu anak-anak Indonesia mendapatkan kesempatan belajar dan meraih cita-cita mereka.</p>
+      <div class="row">
+        <a class="btn" href="#program">♥ Donasi Sekarang</a>
+        <a class="btn outline" href="#program">Lihat Program</a>
+      </div>
+    </div>
   </div>
-</div>
 
-  </div>  <div class="hero-slide"
-       style="background-image: linear-gradient(90deg,rgba(5,30,20,.88),rgba(5,30,20,.25)),url('https://images.unsplash.com/photo-1781193230833-3c29d5083c55?auto=format&fit=crop&w=1800&q=85')"><div class="wrap hero-content">
-  <div class="eyebrow">BERSAMA PEDULI SESAMA</div>
-
-  <h1>Berbagi kebaikan<br>untuk <span>rumah ibadah.</span></h1>
-
-  <p>
-    Mari bersama membantu perbaikan fasilitas ibadah
-    agar masyarakat dapat beribadah dengan nyaman.
-  </p>
-
-  <div class="row">
-    <a class="btn" href="#program">♥ Donasi Sekarang</a>
-    <a class="btn outline" href="#program">Lihat Program</a>
+  <div class="hero-slide"
+       style="background-image:linear-gradient(90deg,rgba(5,30,20,.88),rgba(5,30,20,.25)),url('https://images.unsplash.com/photo-1781193230833-3c29d5083c55?auto=format&fit=crop&w=1800&q=85')">
+    <div class="wrap hero-content">
+      <div class="eyebrow">BERSAMA PEDULI SESAMA</div>
+      <h1>Berbagi kebaikan<br>untuk <span>rumah ibadah.</span></h1>
+      <p>Mari bersama membantu perbaikan fasilitas ibadah agar masyarakat dapat beribadah dengan nyaman.</p>
+      <div class="row">
+        <a class="btn" href="#program">♥ Donasi Sekarang</a>
+        <a class="btn outline" href="#program">Lihat Program</a>
+      </div>
+    </div>
   </div>
-</div>
 
-  </div>  <div class="hero-slide"
-       style="background-image: linear-gradient(90deg,rgba(5,30,20,.88),rgba(5,30,20,.25)),url('https://images.unsplash.com/photo-1654860687488-119a90eafa86?auto=format&fit=crop&w=1800&q=85')"><div class="wrap hero-content">
-  <div class="eyebrow">SATU KEBAIKAN, SEJUTA HARAPAN</div>
-
-  <h1>Ruang belajar<br>yang lebih <span>baik.</span></h1>
-
-  <p>
-    Bersama mendukung ruang belajar yang lebih aman
-    dan nyaman bagi generasi penerus Indonesia.
-  </p>
-
-  <div class="row">
-    <a class="btn" href="#program">♥ Donasi Sekarang</a>
-    <a class="btn outline" href="#program">Lihat Program</a>
+  <div class="hero-slide"
+       style="background-image:linear-gradient(90deg,rgba(5,30,20,.88),rgba(5,30,20,.25)),url('https://images.unsplash.com/photo-1654860687488-119a90eafa86?auto=format&fit=crop&w=1800&q=85')">
+    <div class="wrap hero-content">
+      <div class="eyebrow">SATU KEBAIKAN, SEJUTA HARAPAN</div>
+      <h1>Ruang belajar<br>yang lebih <span>baik.</span></h1>
+      <p>Bersama mendukung ruang belajar yang lebih aman dan nyaman bagi generasi penerus Indonesia.</p>
+      <div class="row">
+        <a class="btn" href="#program">♥ Donasi Sekarang</a>
+        <a class="btn outline" href="#program">Lihat Program</a>
+      </div>
+    </div>
   </div>
-</div>
 
-  </div><button class="slider-arrow slider-prev"
-type="button"
-aria-label="Gambar sebelumnya">❮</button>
-
-<button class="slider-arrow slider-next"
-type="button"
-aria-label="Gambar berikutnya">❯</button>
+  <button class="slider-arrow slider-prev" type="button" aria-label="Gambar sebelumnya">❮</button>
+  <button class="slider-arrow slider-next" type="button" aria-label="Gambar berikutnya">❯</button>
 
   <div class="slider-dots" aria-label="Pilih gambar">
-    <button class="slider-dot active"
-            type="button"
-            aria-label="Gambar 1"></button>
-    <button class="slider-dot"
-            type="button"
-            aria-label="Gambar 2"></button>
-    <button class="slider-dot"
-            type="button"
-            aria-label="Gambar 3"></button>
-  </div></div>
+    <button class="slider-dot active" type="button" aria-label="Gambar 1"></button>
+    <button class="slider-dot" type="button" aria-label="Gambar 2"></button>
+    <button class="slider-dot" type="button" aria-label="Gambar 3"></button>
+  </div>
+</div>
 
 <section id="program">
   <div class="wrap">
-
     <div class="kicker">PROGRAM DONASI KAMI</div>
-
     <h2>Pilih Program yang Bisa Anda Dukung</h2>
-
-    <p class="sub">
-      Pilih program dan nominal, lalu bayar menggunakan QRIS DANA Bisnis.
-    </p>
+    <p class="sub">Pilih program dan nominal, lalu bayar menggunakan QRIS DANA Bisnis.</p>
 
     <div class="cards">
 
       <article class="card">
-        <img
-          src="https://images.unsplash.com/photo-1643216710579-a7500b9f2407?auto=format&fit=crop&w=900&q=85"
-          alt="Anak-anak belajar"
-          loading="lazy">
-
+        <img src="https://images.unsplash.com/photo-1643216710579-a7500b9f2407?auto=format&fit=crop&w=900&q=85" alt="Anak-anak belajar" loading="lazy">
         <div class="card-body">
           <span class="tag">PENDIDIKAN</span>
-
           <h3>Bantu Pendidikan Anak Negeri</h3>
-
-          <p>
-            Dukung penyediaan buku, alat tulis, dan perbaikan fasilitas belajar.
-          </p>
-
-          <div class="money">
-            Target
-            <strong>Rp50.000.000</strong>
-          </div>
-
+          <p>Dukung penyediaan buku, alat tulis, dan perbaikan fasilitas belajar.</p>
+          <div class="money">Target<strong>Rp50.000.000</strong></div>
           <div class="progress-section">
-            <div class="progress-info">
-              <span>Terkumpul</span>
-              <strong id="total-pendidikan">Memuat...</strong>
-            </div>
-
-            <div class="progress-track"
-                 role="progressbar"
-                 aria-label="Progress donasi pendidikan"
-                 aria-valuemin="0"
-                 aria-valuemax="100"
-                 aria-valuenow="0"
-                 id="bar-pendidikan">
-              <div class="progress-fill" id="fill-pendidikan"></div>
-            </div>
-
-            <div class="progress-info">
-              <span id="percent-pendidikan">0% tercapai</span>
-              <span>Target Rp50.000.000</span>
-            </div>
+            <div class="progress-info"><span>Terkumpul</span><strong id="total-pendidikan">Memuat...</strong></div>
+            <div class="progress-track" role="progressbar" aria-label="Progress donasi pendidikan" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar-pendidikan"><div class="progress-fill" id="fill-pendidikan"></div></div>
+            <div class="progress-info"><span id="percent-pendidikan">0% tercapai</span><span>Target Rp50.000.000</span></div>
           </div>
-
-          <button class="btn" type="button"
-                  data-campaign="pendidikan">
-            ♥ Donasi Sekarang
-          </button>
+          <button class="btn" type="button" data-campaign="pendidikan">♥ Donasi Sekarang</button>
         </div>
       </article>
 
       <article class="card">
-        <img
-          src="https://images.unsplash.com/photo-1774977866726-6ae89de023fe?auto=format&fit=crop&w=900&q=85"
-          alt="Tempat ibadah"
-          loading="lazy">
-
+        <img src="https://images.unsplash.com/photo-1774977866726-6ae89de023fe?auto=format&fit=crop&w=900&q=85" alt="Tempat ibadah" loading="lazy">
         <div class="card-body">
           <span class="tag">MUSHOLA</span>
-
           <h3>Renovasi Mushola yang Membutuhkan</h3>
-
-          <p>
-            Bantu perbaikan atap, dinding, lantai, dan fasilitas mushola.
-          </p>
-
-          <div class="money">
-            Target
-            <strong>Rp30.000.000</strong>
-          </div>
-
+          <p>Bantu perbaikan atap, dinding, lantai, dan fasilitas mushola.</p>
+          <div class="money">Target<strong>Rp30.000.000</strong></div>
           <div class="progress-section">
-            <div class="progress-info">
-              <span>Terkumpul</span>
-              <strong id="total-mushola">Memuat...</strong>
-            </div>
-
-            <div class="progress-track"
-                 role="progressbar"
-                 aria-label="Progress donasi mushola"
-                 aria-valuemin="0"
-                 aria-valuemax="100"
-                 aria-valuenow="0"
-                 id="bar-mushola">
-              <div class="progress-fill" id="fill-mushola"></div>
-            </div>
-
-            <div class="progress-info">
-              <span id="percent-mushola">0% tercapai</span>
-              <span>Target Rp30.000.000</span>
-            </div>
+            <div class="progress-info"><span>Terkumpul</span><strong id="total-mushola">Memuat...</strong></div>
+            <div class="progress-track" role="progressbar" aria-label="Progress donasi mushola" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar-mushola"><div class="progress-fill" id="fill-mushola"></div></div>
+            <div class="progress-info"><span id="percent-mushola">0% tercapai</span><span>Target Rp30.000.000</span></div>
           </div>
-
-          <button class="btn" type="button"
-                  data-campaign="mushola">
-            ♥ Donasi Sekarang
-          </button>
+          <button class="btn" type="button" data-campaign="mushola">♥ Donasi Sekarang</button>
         </div>
       </article>
 
       <article class="card">
-        <img
-          src="https://images.unsplash.com/photo-1747673902815-cb0a04ef2cf3?auto=format&fit=crop&w=900&q=85"
-          alt="Ruang kelas"
-          loading="lazy">
-
+        <img src="https://images.unsplash.com/photo-1747673902815-cb0a04ef2cf3?auto=format&fit=crop&w=900&q=85" alt="Ruang kelas" loading="lazy">
         <div class="card-body">
           <span class="tag">RUANG KELAS</span>
-
           <h3>Perbaikan Ruang Kelas</h3>
-
-          <p>
-            Dukung perbaikan meja, kursi, dan ruang belajar agar lebih aman.
-          </p>
-
-          <div class="money">
-            Target
-            <strong>Rp40.000.000</strong>
-          </div>
-
+          <p>Dukung perbaikan meja, kursi, dan ruang belajar agar lebih aman.</p>
+          <div class="money">Target<strong>Rp40.000.000</strong></div>
           <div class="progress-section">
-            <div class="progress-info">
-              <span>Terkumpul</span>
-              <strong id="total-kelas">Memuat...</strong>
-            </div>
-
-            <div class="progress-track"
-                 role="progressbar"
-                 aria-label="Progress donasi ruang kelas"
-                 aria-valuemin="0"
-                 aria-valuemax="100"
-                 aria-valuenow="0"
-                 id="bar-kelas">
-              <div class="progress-fill" id="fill-kelas"></div>
-            </div>
-
-            <div class="progress-info">
-              <span id="percent-kelas">0% tercapai</span>
-              <span>Target Rp40.000.000</span>
-            </div>
+            <div class="progress-info"><span>Terkumpul</span><strong id="total-kelas">Memuat...</strong></div>
+            <div class="progress-track" role="progressbar" aria-label="Progress donasi ruang kelas" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar-kelas"><div class="progress-fill" id="fill-kelas"></div></div>
+            <div class="progress-info"><span id="percent-kelas">0% tercapai</span><span>Target Rp40.000.000</span></div>
           </div>
-
-          <button class="btn" type="button"
-                  data-campaign="kelas">
-            ♥ Donasi Sekarang
-          </button>
+          <button class="btn" type="button" data-campaign="kelas">♥ Donasi Sekarang</button>
         </div>
       </article>
 
     </div>
 
-    <p class="fine">
-      Donasi baru dihitung setelah pembayaran diverifikasi oleh pengelola.
+    <p class="fine">Donasi baru dihitung setelah pembayaran diverifikasi oleh pengelola.</p>
+  </div>
+</section>
+
+<!-- ========================================
+     LAPORAN PENGGUNAAN DANA
+========================================= -->
+<section class="transparency" id="transparansi">
+  <div class="wrap">
+    <div class="kicker">TRANSPARANSI DONASI</div>
+    <h2>Laporan Penggunaan Dana</h2>
+    <p class="sub transparency-intro">
+      Kami berupaya menyampaikan informasi penggunaan dana secara terbuka.
+      Laporan yang ditampilkan di bawah ini telah diterbitkan oleh pengelola
+      melalui panel admin PeduliSesama.
     </p>
 
+    <div id="reportList" class="report-list" aria-live="polite">
+      <div class="report-state">Sedang memuat laporan penggunaan dana...</div>
+    </div>
+
+    <p class="report-disclaimer">
+      Informasi pada bagian ini merupakan laporan pengeluaran yang dimasukkan
+      dan diterbitkan oleh pengelola. Nominal laporan bukan saldo rekening,
+      saldo DANA Bisnis, atau verifikasi transaksi bank secara otomatis.
+    </p>
   </div>
 </section>
 
 <div class="wrap" id="tentang">
   <div class="trust">
-    <h2>Tentang Yayasan PeduliSesama</h2><h3>Bersama Menebarkan Kebaikan, Menghadirkan Harapan</h3>
+    <h2>Tentang Yayasan PeduliSesama</h2>
+    <h3>Bersama Menebarkan Kebaikan, Menghadirkan Harapan</h3>
 
-<p>
-  PeduliSesama hadir dengan semangat kepedulian dan gotong royong
-  untuk membantu masyarakat yang membutuhkan. Kami percaya bahwa
-  setiap orang berhak mendapatkan kesempatan untuk hidup lebih baik,
-  memperoleh pendidikan yang layak, dan tinggal di lingkungan yang nyaman.
-</p>
+    <p>PeduliSesama hadir dengan semangat kepedulian dan gotong royong untuk membantu masyarakat yang membutuhkan. Kami percaya bahwa setiap orang berhak mendapatkan kesempatan untuk hidup lebih baik, memperoleh pendidikan yang layak, dan tinggal di lingkungan yang nyaman.</p>
 
-<p>
-  Melalui semangat kebersamaan, kami ingin menjadi jembatan kebaikan
-  yang mempertemukan orang-orang yang ingin berbagi dengan masyarakat
-  yang membutuhkan bantuan.
-</p>
+    <p>Melalui semangat kebersamaan, kami ingin menjadi jembatan kebaikan yang mempertemukan orang-orang yang ingin berbagi dengan masyarakat yang membutuhkan bantuan.</p>
 
-<h3>Tujuan Kami</h3>
+    <h3>Tujuan Kami</h3>
+    <p>Mendorong kepedulian sosial dan mendukung kegiatan kemanusiaan, pendidikan, serta perbaikan fasilitas yang bermanfaat bagi masyarakat. Kami berharap setiap bantuan dapat menjadi bagian dari perubahan positif yang dilakukan bersama.</p>
 
-<p>
-  Mendorong kepedulian sosial dan mendukung kegiatan kemanusiaan,
-  pendidikan, serta perbaikan fasilitas yang bermanfaat bagi masyarakat.
-  Kami berharap setiap bantuan dapat menjadi bagian dari perubahan
-  positif yang dilakukan bersama.
-</p>
+    <h3>Manfaat yang Ingin Kami Hadirkan</h3>
+    <p><strong>📚 Pendidikan yang Lebih Baik</strong><br>Mendukung perbaikan ruang kelas dan fasilitas belajar agar anak-anak dapat belajar dengan lebih nyaman dan memiliki kesempatan meraih masa depan yang lebih baik.</p>
 
-<h3>Manfaat yang Ingin Kami Hadirkan</h3>
+    <p><strong>🕌 Tempat Ibadah yang Layak</strong><br>Mendukung perbaikan fasilitas tempat ibadah agar masyarakat memiliki tempat yang aman dan nyaman untuk beribadah bersama.</p>
 
-<p>
-  <strong>📚 Pendidikan yang Lebih Baik</strong><br>
-  Mendukung perbaikan ruang kelas dan fasilitas belajar agar anak-anak
-  dapat belajar dengan lebih nyaman dan memiliki kesempatan meraih
-  masa depan yang lebih baik.
-</p>
+    <p><strong>🤝 Kepedulian untuk Sesama</strong><br>Menumbuhkan semangat saling membantu dan gotong royong agar manfaat kebaikan dapat dirasakan lebih banyak orang.</p>
 
-<p>
-  <strong>🕌 Tempat Ibadah yang Layak</strong><br>
-  Mendukung perbaikan fasilitas tempat ibadah agar masyarakat memiliki
-  tempat yang aman dan nyaman untuk beribadah bersama.
-</p>
+    <h3>Setiap Kebaikan Memiliki Arti</h3>
+    <p>Kami percaya bahwa bantuan sekecil apa pun dapat memberikan harapan baru. Ketika banyak orang bersatu untuk melakukan kebaikan, perubahan yang lebih besar dapat diwujudkan.</p>
 
-<p>
-  <strong>🤝 Kepedulian untuk Sesama</strong><br>
-  Menumbuhkan semangat saling membantu dan gotong royong agar manfaat
-  kebaikan dapat dirasakan lebih banyak orang.
-</p>
+    <p>Mari bersama PeduliSesama menumbuhkan kepedulian, memperkuat kebersamaan, dan menghadirkan manfaat bagi masyarakat Indonesia.</p>
 
-<h3>Setiap Kebaikan Memiliki Arti</h3>
-
-<p>
-  Kami percaya bahwa bantuan sekecil apa pun dapat memberikan harapan
-  baru. Ketika banyak orang bersatu untuk melakukan kebaikan, perubahan
-  yang lebih besar dapat diwujudkan.
-</p>
-
-<p>
-  Mari bersama PeduliSesama menumbuhkan kepedulian, memperkuat
-  kebersamaan, dan menghadirkan manfaat bagi masyarakat Indonesia.
-</p>
-
-<a class="btn" href="#program">Dukung Program Kami</a>
-
+    <a class="btn" href="#program">Dukung Program Kami</a>
   </div>
 </div>
 
@@ -915,64 +820,34 @@ aria-label="Gambar berikutnya">❯</button>
   </div>
 </footer>
 
-<div class="modal" id="donationModal"
-     role="dialog"
-     aria-modal="true"
-     aria-labelledby="donationTitle"
-     aria-hidden="true">
-
+<div class="modal" id="donationModal" role="dialog" aria-modal="true" aria-labelledby="donationTitle" aria-hidden="true">
   <div class="modalbox">
-
     <div class="modalhead">
       <div>
         <div class="kicker">FORMULIR DONASI</div>
         <h2 id="donationTitle">Berbagi kebaikan</h2>
         <p id="programName" class="sub"></p>
       </div>
-
-      <button class="close" id="closeModal"
-              type="button" aria-label="Tutup">×</button>
+      <button class="close" id="closeModal" type="button" aria-label="Tutup">×</button>
     </div>
 
     <form id="donationForm">
-
       <label class="label" for="name">Nama donatur</label>
+      <input class="input" id="name" name="name" maxlength="100" autocomplete="name" required placeholder="Nama Anda">
 
-      <input class="input" id="name" name="name"
-             maxlength="100" autocomplete="name"
-             required placeholder="Nama Anda">
-
-      <label class="label" for="contact">
-        Email/WhatsApp (opsional)
-      </label>
-
-      <input class="input" id="contact" name="contact"
-             maxlength="120" autocomplete="email"
-             placeholder="Kontak Anda">
+      <label class="label" for="contact">Email/WhatsApp (opsional)</label>
+      <input class="input" id="contact" name="contact" maxlength="120" autocomplete="email" placeholder="Kontak Anda">
 
       <span class="label">Pilih nominal</span>
-
       <div class="amounts">
-        <button type="button" class="amount sel"
-                data-value="10000">Rp10.000</button>
-
-        <button type="button" class="amount"
-                data-value="25000">Rp25.000</button>
-
-        <button type="button" class="amount"
-                data-value="50000">Rp50.000</button>
-
-        <button type="button" class="amount"
-                data-value="100000">Rp100.000</button>
+        <button type="button" class="amount sel" data-value="10000">Rp10.000</button>
+        <button type="button" class="amount" data-value="25000">Rp25.000</button>
+        <button type="button" class="amount" data-value="50000">Rp50.000</button>
+        <button type="button" class="amount" data-value="100000">Rp100.000</button>
       </div>
 
-      <label class="label" for="custom">
-        Nominal lain (Rupiah)
-      </label>
-
-      <input class="input" id="custom" name="custom"
-             type="number" min="1000" step="1000"
-             inputmode="numeric" placeholder="Contoh: 150000">
+      <label class="label" for="custom">Nominal lain (Rupiah)</label>
+      <input class="input" id="custom" name="custom" type="number" min="1000" step="1000" inputmode="numeric" placeholder="Contoh: 150000">
 
       <p class="notice">
         Setelah data tersimpan, QRIS DANA Bisnis akan ditampilkan.
@@ -981,45 +856,22 @@ aria-label="Gambar berikutnya">❯</button>
         pembayaran kepada pengelola melalui WhatsApp.
       </p>
 
-      <button class="btn" id="submitDonation"
-              type="submit" style="width:100%;margin-top:8px">
-        Tampilkan QRIS Donasi
-      </button>
-
-      <div id="formStatus" class="status"
-           role="status" aria-live="polite"></div>
+      <button class="btn" id="submitDonation" type="submit" style="width:100%;margin-top:8px">Tampilkan QRIS Donasi</button>
+      <div id="formStatus" class="status" role="status" aria-live="polite"></div>
 
       <div id="qrisPanel" class="qris-panel">
-
         <h3>Bayar melalui QRIS DANA Bisnis</h3>
+        <p>Pindai kode QRIS berikut menggunakan aplikasi pembayaran Anda. Pastikan nama penerima dan nominal pembayaran benar.</p>
 
-        <p>
-          Pindai kode QRIS berikut menggunakan aplikasi pembayaran Anda.
-          Pastikan nama penerima dan nominal pembayaran benar.
-        </p>
-
-        <img
-          src="https://jghscfvxpollihkdpzxc.supabase.co/storage/v1/object/public/qris-donasi/qr_ID1026597869027_12.10.26_1791789389_1791789389611.jpeg"
-          alt="QRIS DANA Bisnis PeduliSesama">
+        <img src="https://jghscfvxpollihkdpzxc.supabase.co/storage/v1/object/public/qris-donasi/qr_ID1026597869027_12.10.26_1791789389_1791789389611.jpeg" alt="QRIS DANA Bisnis PeduliSesama">
 
         <p id="qrisAmount"></p>
-
         <p class="qris-ref" id="qrisReference"></p>
 
-        <a class="btn" id="whatsappConfirm"
-           href="#" target="_blank"
-           rel="noopener noreferrer">
-          Konfirmasi Pembayaran via WhatsApp
-        </a>
+        <a class="btn" id="whatsappConfirm" href="#" target="_blank" rel="noopener noreferrer">Konfirmasi Pembayaran via WhatsApp</a>
 
-        <p class="notice">
-          Pembukaan WhatsApp tidak otomatis mengonfirmasi pembayaran.
-          Admin harus memeriksa bukti pembayaran sebelum status donasi
-          diubah menjadi lunas.
-        </p>
-
+        <p class="notice">Pembukaan WhatsApp tidak otomatis mengonfirmasi pembayaran. Admin harus memeriksa bukti pembayaran sebelum status donasi diubah menjadi lunas.</p>
       </div>
-
     </form>
   </div>
 </div>
@@ -1027,31 +879,14 @@ aria-label="Gambar berikutnya">❯</button>
 <script>
 'use strict';
 
-// ========================================
-// KONFIGURASI WEBSITE PEDULISESAMA
-// ========================================
-
-const SUPABASE_URL =
-  'https://jghscfvxpollihkdpzxc.supabase.co';
-
-const SUPABASE_KEY =
-  'sb_publishable__0YZI4z45e4J99Ny0GoabA_MQkcevdJ';
-
+const SUPABASE_URL = 'https://jghscfvxpollihkdpzxc.supabase.co';
+const SUPABASE_KEY = 'sb_publishable__0YZI4z45e4J99Ny0GoabA_MQkcevdJ';
 const WHATSAPP_NUMBER = '6285167459095';
 
-const QRIS_IMAGE =
-  'https://jghscfvxpollihkdpzxc.supabase.co/storage/v1/object/public/qris-donasi/qr_ID1026597869027_12.10.26_1791789389_1791789389611.jpeg';
-
 const campaigns = {
-  pendidikan: {
-    name: 'Bantu Pendidikan Anak Negeri'
-  },
-  mushola: {
-    name: 'Renovasi Mushola yang Membutuhkan'
-  },
-  kelas: {
-    name: 'Perbaikan Ruang Kelas'
-  }
+  pendidikan: { name: 'Bantu Pendidikan Anak Negeri' },
+  mushola: { name: 'Renovasi Mushola yang Membutuhkan' },
+  kelas: { name: 'Perbaikan Ruang Kelas' }
 };
 
 const CAMPAIGN_TARGETS = {
@@ -1060,31 +895,22 @@ const CAMPAIGN_TARGETS = {
   kelas: 40000000
 };
 
+const CAMPAIGN_NAMES = {
+  pendidikan: 'Pendidikan',
+  mushola: 'Mushola',
+  kelas: 'Ruang Kelas'
+};
+
 let activeCampaign = '';
 let chosenAmount = 10000;
 let submitting = false;
 
-const donationForm =
-  document.getElementById('donationForm');
-
-const donationModal =
-  document.getElementById('donationModal');
-
-const submitButton =
-  document.getElementById('submitDonation');
-
-const formStatus =
-  document.getElementById('formStatus');
-
-const customInput =
-  document.getElementById('custom');
-
-const qrisPanel =
-  document.getElementById('qrisPanel');
-
-// ========================================
-// STATUS FORMULIR
-// ========================================
+const donationForm = document.getElementById('donationForm');
+const donationModal = document.getElementById('donationModal');
+const submitButton = document.getElementById('submitDonation');
+const formStatus = document.getElementById('formStatus');
+const customInput = document.getElementById('custom');
+const qrisPanel = document.getElementById('qrisPanel');
 
 function showStatus(message, isError = false) {
   formStatus.textContent = message;
@@ -1102,31 +928,18 @@ function describeError(body, status) {
   let message = '';
 
   if (typeof body === 'string') {
-    try {
-      body = JSON.parse(body);
-    } catch (_) {
-      message = body;
-    }
+    try { body = JSON.parse(body); }
+    catch (_) { message = body; }
   }
 
   if (body && typeof body === 'object') {
-    message =
-      body.message ||
-      body.error_description ||
-      body.error ||
-      body.details ||
-      body.hint ||
-      '';
+    message = body.message || body.error_description ||
+      body.error || body.details || body.hint || '';
   }
 
   return 'HTTP ' + status + ': ' +
-    String(message || 'Server tidak memberikan keterangan tambahan.')
-      .slice(0, 500);
+    String(message || 'Server tidak memberikan keterangan tambahan.').slice(0, 500);
 }
-
-// ========================================
-// BUKA DAN TUTUP MODAL
-// ========================================
 
 function openModal(campaignId) {
   const campaign = campaigns[campaignId];
@@ -1139,23 +952,17 @@ function openModal(campaignId) {
   activeCampaign = campaignId;
   chosenAmount = 10000;
 
-  document.getElementById('programName').textContent =
-    campaign.name;
-
+  document.getElementById('programName').textContent = campaign.name;
   document.getElementById('name').value = '';
   document.getElementById('contact').value = '';
   customInput.value = '';
 
   document.querySelectorAll('.amount').forEach(button => {
-    button.classList.toggle(
-      'sel',
-      Number(button.dataset.value) === chosenAmount
-    );
+    button.classList.toggle('sel', Number(button.dataset.value) === chosenAmount);
   });
 
   hideStatus();
   qrisPanel.style.display = 'none';
-
   submitButton.disabled = false;
   submitButton.textContent = 'Tampilkan QRIS Donasi';
 
@@ -1163,9 +970,7 @@ function openModal(campaignId) {
   donationModal.setAttribute('aria-hidden', 'false');
   document.body.classList.add('modal-open');
 
-  setTimeout(() => {
-    document.getElementById('name').focus();
-  }, 50);
+  setTimeout(() => document.getElementById('name').focus(), 50);
 }
 
 function closeModal() {
@@ -1177,123 +982,68 @@ function closeModal() {
 }
 
 document.querySelectorAll('[data-campaign]').forEach(button => {
-  button.addEventListener('click', () => {
-    openModal(button.dataset.campaign);
-  });
+  button.addEventListener('click', () => openModal(button.dataset.campaign));
 });
 
-document.getElementById('closeModal')
-  .addEventListener('click', closeModal);
+document.getElementById('closeModal').addEventListener('click', closeModal);
 
 donationModal.addEventListener('click', event => {
-  if (event.target === donationModal) {
-    closeModal();
-  }
+  if (event.target === donationModal) closeModal();
 });
 
 document.addEventListener('keydown', event => {
-  if (event.key === 'Escape') {
-    closeModal();
-  }
+  if (event.key === 'Escape') closeModal();
 });
-
-// ========================================
-// PILIH NOMINAL
-// ========================================
 
 document.querySelectorAll('.amount').forEach(button => {
   button.addEventListener('click', () => {
-    document.querySelectorAll('.amount').forEach(item => {
-      item.classList.remove('sel');
-    });
-
+    document.querySelectorAll('.amount').forEach(item => item.classList.remove('sel'));
     button.classList.add('sel');
-
     chosenAmount = Number(button.dataset.value);
     customInput.value = '';
-
     hideStatus();
   });
 });
 
 customInput.addEventListener('input', () => {
-  document.querySelectorAll('.amount').forEach(button => {
-    button.classList.remove('sel');
-  });
-
+  document.querySelectorAll('.amount').forEach(button => button.classList.remove('sel'));
   hideStatus();
 });
-
-// ========================================
-// SIMPAN DONASI KE SUPABASE
-// Status awal selalu pending
-// ========================================
 
 async function createDonation(data) {
   const donationId = crypto.randomUUID();
 
-  const payload = {
-    id: donationId,
-    ...data
-  };
-
-  const response = await fetch(
-    SUPABASE_URL + '/rest/v1/donations',
-    {
-      method: 'POST',
-      headers: {
-        'apikey': SUPABASE_KEY,
-        'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
-      },
-      body: JSON.stringify(payload)
-    }
-  );
+  const response = await fetch(SUPABASE_URL + '/rest/v1/donations', {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify({ id: donationId, ...data })
+  });
 
   const responseText = await response.text();
 
   if (!response.ok) {
-    console.error(
-      'Supabase insert error:',
-      response.status,
-      responseText
-    );
-
-    throw new Error(
-      'Gagal menyimpan data donasi. ' +
-      describeError(responseText, response.status)
-    );
+    console.error('Supabase insert error:', response.status, responseText);
+    throw new Error('Gagal menyimpan data donasi. ' + describeError(responseText, response.status));
   }
 
   return { id: donationId };
 }
 
-// ========================================
-// FORMULIR DONASI QRIS
-// ========================================
-
 donationForm.addEventListener('submit', async event => {
   event.preventDefault();
-
   if (submitting) return;
 
-  const name =
-    document.getElementById('name').value.trim();
-
-  const contact =
-    document.getElementById('contact').value.trim();
-
+  const name = document.getElementById('name').value.trim();
+  const contact = document.getElementById('contact').value.trim();
   const custom = customInput.value.trim();
-
-  const amount = custom !== ''
-    ? Number(custom)
-    : chosenAmount;
+  const amount = custom !== '' ? Number(custom) : chosenAmount;
 
   if (!activeCampaign || !campaigns[activeCampaign]) {
-    showStatus(
-      'Silakan pilih program donasi terlebih dahulu.',
-      true
-    );
+    showStatus('Silakan pilih program donasi terlebih dahulu.', true);
     return;
   }
 
@@ -1313,17 +1063,13 @@ donationForm.addEventListener('submit', async event => {
   }
 
   if (amount > 1000000000) {
-    showStatus(
-      'Nominal terlalu besar. Silakan masukkan nominal yang valid.',
-      true
-    );
+    showStatus('Nominal terlalu besar. Silakan masukkan nominal yang valid.', true);
     return;
   }
 
   submitting = true;
   submitButton.disabled = true;
   submitButton.textContent = 'Menyimpan data...';
-
   hideStatus();
   qrisPanel.style.display = 'none';
 
@@ -1338,8 +1084,7 @@ donationForm.addEventListener('submit', async event => {
     });
 
     document.getElementById('qrisAmount').textContent =
-      'Nominal donasi: Rp' +
-      amount.toLocaleString('id-ID');
+      'Nominal donasi: Rp' + amount.toLocaleString('id-ID');
 
     document.getElementById('qrisReference').textContent =
       'ID Donasi: ' + donation.id;
@@ -1353,26 +1098,16 @@ donationForm.addEventListener('submit', async event => {
       '\nSaya akan mengirim bukti pembayaran untuk diperiksa.';
 
     document.getElementById('whatsappConfirm').href =
-      'https://wa.me/' + WHATSAPP_NUMBER +
-      '?text=' + encodeURIComponent(message);
+      'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message);
 
     qrisPanel.style.display = 'block';
 
-    showStatus(
-      'Data donasi berhasil disimpan dengan status MENUNGGU KONFIRMASI. ' +
-      'Silakan bayar melalui QRIS dan kirim bukti pembayaran kepada admin.'
-    );
-
+    showStatus('Data donasi berhasil disimpan dengan status MENUNGGU KONFIRMASI. Silakan bayar melalui QRIS dan kirim bukti pembayaran kepada admin.');
     submitButton.textContent = 'Data Donasi Tersimpan';
 
   } catch (error) {
     console.error('Donation process error:', error);
-
-    showStatus(
-      'Donasi belum berhasil disimpan. ' + error.message,
-      true
-    );
-
+    showStatus('Donasi belum berhasil disimpan. ' + error.message, true);
     submitButton.textContent = 'Coba Lagi';
 
   } finally {
@@ -1381,12 +1116,8 @@ donationForm.addEventListener('submit', async event => {
   }
 });
 
-// ========================================
-// PROGRESS DONASI DARI SUPABASE
-// ========================================
-
-const PROGRESS_URL =
-  SUPABASE_URL + '/functions/v1/campaign-progress';
+// PROGRES DONASI
+const PROGRESS_URL = SUPABASE_URL + '/functions/v1/campaign-progress';
 
 function formatRupiah(amount) {
   return 'Rp' + Number(amount).toLocaleString('id-ID');
@@ -1396,6 +1127,147 @@ async function loadCampaignProgress() {
   try {
     const response = await fetch(PROGRESS_URL, {
       method: 'GET',
+      headers: { 'apikey': SUPABASE_KEY },
+      cache: 'no-store'
+    });
+
+    if (!response.ok) throw new Error('Gagal mengambil data progress.');
+
+    const result = await response.json();
+    if (!result.success || !result.totals) throw new Error('Format data progress tidak valid.');
+
+    for (const campaignId of Object.keys(CAMPAIGN_TARGETS)) {
+      const total = Math.max(0, Number(result.totals[campaignId]) || 0);
+      const target = CAMPAIGN_TARGETS[campaignId];
+      const percentage = Math.min(100, Math.max(0, total / target * 100));
+
+      const totalElement = document.getElementById('total-' + campaignId);
+      const fillElement = document.getElementById('fill-' + campaignId);
+      const percentElement = document.getElementById('percent-' + campaignId);
+      const barElement = document.getElementById('bar-' + campaignId);
+
+      if (totalElement) totalElement.textContent = formatRupiah(total);
+      if (fillElement) fillElement.style.width = percentage + '%';
+
+      if (percentElement) {
+        percentElement.textContent = percentage.toFixed(1).replace('.', ',') + '% tercapai';
+      }
+
+      if (barElement) {
+        barElement.setAttribute('aria-valuenow', String(Math.round(percentage)));
+      }
+    }
+  } catch (error) {
+    console.error('Progress donasi gagal dimuat:', error);
+
+    for (const campaignId of Object.keys(CAMPAIGN_TARGETS)) {
+      const totalElement = document.getElementById('total-' + campaignId);
+      if (totalElement) totalElement.textContent = 'Belum tersedia';
+    }
+  }
+}
+
+loadCampaignProgress();
+setInterval(loadCampaignProgress, 60000);
+
+// ========================================
+// AMBIL LAPORAN PENGGUNAAN DANA TERBITAN
+// Hanya laporan is_published = true
+// ========================================
+
+const REPORTS_URL =
+  SUPABASE_URL +
+  '/rest/v1/fund_usage_reports' +
+  '?select=id,campaign_id,title,description,amount,expense_date,receipt_url' +
+  '&is_published=eq.true' +
+  '&order=expense_date.desc,created_at.desc';
+
+function formatReportDate(dateValue) {
+  if (!dateValue) return 'Tanggal tidak dicantumkan';
+
+  const date = new Date(dateValue);
+
+  if (Number.isNaN(date.getTime())) {
+    return 'Tanggal tidak dicantumkan';
+  }
+
+  return new Intl.DateTimeFormat('id-ID', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC'
+  }).format(date);
+}
+
+function createReportElement(report) {
+  const article = document.createElement('article');
+  article.className = 'report-card';
+
+  const tag = document.createElement('span');
+  tag.className = 'report-tag';
+  tag.textContent = CAMPAIGN_NAMES[report.campaign_id] || 'Program PeduliSesama';
+
+  const title = document.createElement('h3');
+  title.textContent = report.title || 'Laporan penggunaan dana';
+
+  const date = document.createElement('div');
+  date.className = 'report-date';
+  date.textContent = 'Tanggal pengeluaran: ' + formatReportDate(report.expense_date);
+
+  const description = document.createElement('p');
+  description.className = 'report-description';
+  description.textContent = report.description || 'Tidak ada keterangan tambahan.';
+
+  const amountWrap = document.createElement('div');
+  amountWrap.className = 'report-amount';
+
+  const amountLabel = document.createElement('span');
+  amountLabel.textContent = 'Dana yang dilaporkan digunakan';
+
+  const amount = document.createElement('strong');
+  const numericAmount = Number(report.amount);
+
+  amount.textContent = Number.isFinite(numericAmount) && numericAmount >= 0
+    ? formatRupiah(numericAmount)
+    : 'Nominal tidak tersedia';
+
+  amountWrap.append(amountLabel, amount);
+  article.append(tag, title, date, description, amountWrap);
+
+  if (report.receipt_url) {
+    try {
+      const receiptUrl = new URL(report.receipt_url);
+
+      if (receiptUrl.protocol === 'https:' || receiptUrl.protocol === 'http:') {
+        const receipt = document.createElement('a');
+        receipt.className = 'report-receipt';
+        receipt.href = receiptUrl.href;
+        receipt.target = '_blank';
+        receipt.rel = 'noopener noreferrer';
+        receipt.textContent = 'Lihat bukti pengeluaran ↗';
+        article.appendChild(receipt);
+      }
+    } catch (_) {
+      // Abaikan tautan bukti yang formatnya tidak valid.
+    }
+  }
+
+  return article;
+}
+
+async function loadFundUsageReports() {
+  const reportList = document.getElementById('reportList');
+
+  reportList.replaceChildren();
+
+  const loading = document.createElement('div');
+  loading.className = 'report-state';
+  loading.textContent = 'Sedang memuat laporan penggunaan dana...';
+  reportList.appendChild(loading);
+
+  try {
+    const response = await fetch(REPORTS_URL, {
+      method: 'GET',
       headers: {
         'apikey': SUPABASE_KEY
       },
@@ -1403,94 +1275,50 @@ async function loadCampaignProgress() {
     });
 
     if (!response.ok) {
-      throw new Error('Gagal mengambil data progress.');
+      const responseText = await response.text();
+      console.error('Laporan dana gagal dimuat:', response.status, responseText);
+      throw new Error('Tidak dapat mengambil laporan dari server.');
     }
 
-    const result = await response.json();
+    const reports = await response.json();
+    reportList.replaceChildren();
 
-    if (!result.success || !result.totals) {
-      throw new Error('Format data progress tidak valid.');
+    if (!Array.isArray(reports) || reports.length === 0) {
+      const empty = document.createElement('div');
+      empty.className = 'report-state';
+      empty.textContent = 'Belum ada laporan penggunaan dana yang diterbitkan.';
+      reportList.appendChild(empty);
+      return;
     }
 
-    for (const campaignId of Object.keys(CAMPAIGN_TARGETS)) {
-      const total = Math.max(
-        0,
-        Number(result.totals[campaignId]) || 0
-      );
-
-      const target = CAMPAIGN_TARGETS[campaignId];
-
-      const percentage = Math.min(
-        100,
-        Math.max(0, total / target * 100)
-      );
-
-      const totalElement =
-        document.getElementById('total-' + campaignId);
-
-      const fillElement =
-        document.getElementById('fill-' + campaignId);
-
-      const percentElement =
-        document.getElementById('percent-' + campaignId);
-
-      const barElement =
-        document.getElementById('bar-' + campaignId);
-
-      if (totalElement) {
-        totalElement.textContent = formatRupiah(total);
-      }
-
-      if (fillElement) {
-        fillElement.style.width = percentage + '%';
-      }
-
-      if (percentElement) {
-        percentElement.textContent =
-          percentage.toFixed(1).replace('.', ',') +
-          '% tercapai';
-      }
-
-      if (barElement) {
-        barElement.setAttribute(
-          'aria-valuenow',
-          String(Math.round(percentage))
-        );
-      }
-    }
+    reports.forEach(report => {
+      reportList.appendChild(createReportElement(report));
+    });
 
   } catch (error) {
-    console.error('Progress donasi gagal dimuat:', error);
+    console.error('Laporan penggunaan dana gagal dimuat:', error);
+    reportList.replaceChildren();
 
-    for (const campaignId of Object.keys(CAMPAIGN_TARGETS)) {
-      const totalElement =
-        document.getElementById('total-' + campaignId);
+    const errorMessage = document.createElement('div');
+    errorMessage.className = 'report-state';
+    errorMessage.textContent =
+      'Laporan belum dapat ditampilkan. Silakan coba muat ulang halaman beberapa saat lagi.';
 
-      if (totalElement) {
-        totalElement.textContent = 'Belum tersedia';
-      }
-    }
+    reportList.appendChild(errorMessage);
   }
 }
 
-loadCampaignProgress();
-setInterval(loadCampaignProgress, 60000);
-// ===== SLIDER PEDULISESAMA =====
-(function () {
-  const slider = document.getElementById("heroSlider");
+loadFundUsageReports();
 
+// SLIDER GAMBAR
+(function () {
+  const slider = document.getElementById('heroSlider');
   if (!slider) return;
 
-  const slides = Array.from(
-    slider.querySelectorAll(".hero-slide")
-  );
-
-  const dots = Array.from(
-    slider.querySelectorAll(".slider-dot")
-  );
-
-  const prevButton = slider.querySelector(".slider-prev");
-  const nextButton = slider.querySelector(".slider-next");
+  const slides = Array.from(slider.querySelectorAll('.hero-slide'));
+  const dots = Array.from(slider.querySelectorAll('.slider-dot'));
+  const prevButton = slider.querySelector('.slider-prev');
+  const nextButton = slider.querySelector('.slider-next');
 
   if (slides.length === 0) return;
 
@@ -1501,26 +1329,18 @@ setInterval(loadCampaignProgress, 60000);
   function showSlide(index) {
     currentIndex = (index + slides.length) % slides.length;
 
-    slides.forEach(function (slide, i) {
-      slide.classList.toggle("active", i === currentIndex);
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === currentIndex);
     });
 
-    dots.forEach(function (dot, i) {
-      dot.classList.toggle("active", i === currentIndex);
-      dot.setAttribute(
-        "aria-pressed",
-        i === currentIndex ? "true" : "false"
-      );
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentIndex);
+      dot.setAttribute('aria-pressed', i === currentIndex ? 'true' : 'false');
     });
   }
 
-  function nextSlide() {
-    showSlide(currentIndex + 1);
-  }
-
-  function prevSlide() {
-    showSlide(currentIndex - 1);
-  }
+  function nextSlide() { showSlide(currentIndex + 1); }
+  function prevSlide() { showSlide(currentIndex - 1); }
 
   function stopAutoplay() {
     if (autoplayTimer) {
@@ -1531,66 +1351,53 @@ setInterval(loadCampaignProgress, 60000);
 
   function startAutoplay() {
     stopAutoplay();
-
-    if (slides.length > 1) {
-      autoplayTimer = setInterval(nextSlide, 5000);
-    }
+    if (slides.length > 1) autoplayTimer = setInterval(nextSlide, 5000);
   }
 
   if (nextButton) {
-    nextButton.addEventListener("click", function () {
+    nextButton.addEventListener('click', () => {
       nextSlide();
       startAutoplay();
     });
   }
 
   if (prevButton) {
-    prevButton.addEventListener("click", function () {
+    prevButton.addEventListener('click', () => {
       prevSlide();
       startAutoplay();
     });
   }
 
-  dots.forEach(function (dot, index) {
-    dot.addEventListener("click", function () {
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
       showSlide(index);
       startAutoplay();
     });
   });
 
-  slider.addEventListener("mouseenter", stopAutoplay);
-  slider.addEventListener("mouseleave", startAutoplay);
+  slider.addEventListener('mouseenter', stopAutoplay);
+  slider.addEventListener('mouseleave', startAutoplay);
 
-  slider.addEventListener(
-    "touchstart",
-    function (event) {
-      touchStartX = event.changedTouches[0].screenX;
-    },
-    { passive: true }
-  );
+  slider.addEventListener('touchstart', event => {
+    touchStartX = event.changedTouches[0].screenX;
+  }, { passive: true });
 
-  slider.addEventListener(
-    "touchend",
-    function (event) {
-      const touchEndX = event.changedTouches[0].screenX;
-      const distance = touchEndX - touchStartX;
+  slider.addEventListener('touchend', event => {
+    const touchEndX = event.changedTouches[0].screenX;
+    const distance = touchEndX - touchStartX;
 
-      if (Math.abs(distance) > 50) {
-        if (distance < 0) {
-          nextSlide();
-        } else {
-          prevSlide();
-        }
+    if (Math.abs(distance) > 50) {
+      if (distance < 0) nextSlide();
+      else prevSlide();
 
-        startAutoplay();
-      }
-    },
-    { passive: true }
-  );
+      startAutoplay();
+    }
+  }, { passive: true });
 
   showSlide(0);
   startAutoplay();
 })();
 </script>
+
 </body>
 </html>
