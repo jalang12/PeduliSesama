@@ -1,77 +1,1067 @@
 <!DOCTYPE html>
-<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#073d30"><title>Panel Admin — PeduliSesama (Tombol Status)</title>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#073d30">
+<title>Panel Admin — PeduliSesama</title>
+
 <style>
-:root{--g:#087456;--d:#073d30;--ink:#182d28;--muted:#65746d;--bg:#f5f8f5;--line:#e1e8e2}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif}.wrap{width:min(1100px,94%);margin:auto}header{background:var(--d);color:white;padding:18px 0}.head{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}.head h1{font-size:22px;margin:0}.head p{font-size:12px;margin:4px 0 0;color:#d6e7df}.btn{border:0;border-radius:8px;background:var(--g);color:white;padding:10px 14px;font-weight:700;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block}.light{background:white;color:var(--d)}.red{background:#a83232}main{padding:24px 0 50px}.panel,.stat{background:white;border:1px solid var(--line);border-radius:12px;padding:17px;box-shadow:0 4px 12px #153c2410}.panel{margin-bottom:17px;overflow:hidden}.panel h2{font-size:18px;margin:0 0 14px}.notice{padding:13px;border-radius:9px;margin-bottom:16px;font-size:13px;line-height:1.5;background:#eaf4ee;border:1px solid #cde3d3}.warn{background:#fff4d8;border-color:#efd99d;color:#654d12}.error{background:#fff0f0;border-color:#f0c5c5;color:#8b2525}label{display:block;font-size:13px;font-weight:bold;margin:12px 0 6px}input{width:100%;padding:12px;border:1px solid #cfdad1;border-radius:8px;font-size:15px}form{max-width:440px}.actions,.toolbar,.topline{display:flex;gap:9px;flex-wrap:wrap;align-items:center;justify-content:space-between}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:17px}.stat span{font-size:12px;color:var(--muted)}.stat strong{display:block;font-size:22px;margin-top:7px;overflow-wrap:anywhere}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:12px;min-width:800px}th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#f2f7f3;color:#52645a}td small{display:block;color:var(--muted);margin-top:3px}.empty{padding:20px;color:var(--muted);font-size:13px}.status{display:inline-block;border:1px solid #cde3d3;border-radius:7px;padding:5px 7px;font-size:11px;background:#eef8f0;color:#18583c;overflow-wrap:anywhere}.note{font-size:12px;color:var(--muted);line-height:1.6}.hidden{display:none!important}@media(max-width:650px){.stats{grid-template-columns:1fr}.head h1{font-size:20px}}
-</style></head><body>
-<header><div class="wrap head"><div><h1>PeduliSesama · Panel Admin</h1><p>VERSI BARU — ada kolom Tindakan dan tombol Tandai Paid</p><p>Dashboard donasi dari database Supabase</p></div><a class="btn light" href="index.html">← Kembali ke Website</a></div></header>
+:root{
+  --g:#087456;
+  --d:#073d30;
+  --ink:#182d28;
+  --muted:#65746d;
+  --bg:#f5f8f5;
+  --line:#e1e8e2;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Arial,sans-serif
+}
+.wrap{width:min(1100px,94%);margin:auto}
+header{background:var(--d);color:white;padding:18px 0}
+.head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap
+}
+.head h1{font-size:22px;margin:0}
+.head p{font-size:12px;margin:4px 0 0;color:#d6e7df}
+.btn{
+  border:0;
+  border-radius:8px;
+  background:var(--g);
+  color:white;
+  padding:10px 14px;
+  font-weight:700;
+  font-size:13px;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-block
+}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.light{background:white;color:var(--d)}
+.red{background:#a83232}
+.gray{background:#65746d}
+.gold{background:#946c0b}
+main{padding:24px 0 50px}
+.panel,.stat{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:17px;
+  box-shadow:0 4px 12px #153c2410
+}
+.panel{margin-bottom:17px;overflow:hidden}
+.panel h2{font-size:18px;margin:0 0 14px}
+.notice{
+  padding:13px;
+  border-radius:9px;
+  margin-bottom:16px;
+  font-size:13px;
+  line-height:1.5;
+  background:#eaf4ee;
+  border:1px solid #cde3d3
+}
+.warn{background:#fff4d8;border-color:#efd99d;color:#654d12}
+.error{background:#fff0f0;border-color:#f0c5c5;color:#8b2525}
+.success{background:#eaf4ee;border-color:#cde3d3;color:#18583c}
+label{
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  margin:12px 0 6px
+}
+input,select,textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #cfdad1;
+  border-radius:8px;
+  font-size:14px;
+  font-family:inherit;
+  background:white;
+  color:var(--ink)
+}
+textarea{min-height:100px;resize:vertical}
+input:focus,select:focus,textarea:focus{
+  outline:2px solid #b9ddcb;
+  border-color:var(--g)
+}
+form{max-width:440px}
+.report-form{max-width:none}
+.actions,.toolbar,.topline{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 14px
+}
+.full{grid-column:1/-1}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:13px;
+  margin-bottom:17px
+}
+.stat span{font-size:12px;color:var(--muted)}
+.stat strong{
+  display:block;
+  font-size:22px;
+  margin-top:7px;
+  overflow-wrap:anywhere
+}
+.table-wrap{overflow-x:auto}
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:12px;
+  min-width:800px
+}
+th,td{
+  text-align:left;
+  padding:11px 9px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top
+}
+th{background:#f2f7f3;color:#52645a}
+td small{display:block;color:var(--muted);margin-top:3px}
+.empty{padding:20px;color:var(--muted);font-size:13px}
+.status{
+  display:inline-block;
+  border:1px solid #cde3d3;
+  border-radius:7px;
+  padding:5px 7px;
+  font-size:11px;
+  background:#eef8f0;
+  color:#18583c;
+  overflow-wrap:anywhere
+}
+.status-draft{background:#fff4d8;border-color:#efd99d;color:#654d12}
+.note{font-size:12px;color:var(--muted);line-height:1.6}
+.hidden{display:none!important}
+.section-intro{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+  margin-top:-5px
+}
+.report-actions{display:flex;gap:6px;flex-wrap:wrap}
+.report-actions .btn{padding:8px 10px}
+.receipt-link{color:var(--g);font-weight:bold}
+@media(max-width:650px){
+  .stats{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .full{grid-column:auto}
+  .head h1{font-size:20px}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="wrap head">
+    <div>
+      <h1>PeduliSesama · Panel Admin</h1>
+      <p>Dashboard donasi dan transparansi penggunaan dana</p>
+    </div>
+    <a class="btn light" href="index.html">← Kembali ke Website</a>
+  </div>
+</header>
+
 <main class="wrap">
-<div id="configNotice" class="notice warn">Isi SUPABASE_URL dan SUPABASE_PUBLISHABLE_KEY di bagian konfigurasi kode. Jangan masukkan service_role/secret key ke HTML.</div>
-<div id="message" class="notice hidden" role="status"></div>
-<section id="loginPanel" class="panel"><h2>Login Admin</h2><p class="note">Gunakan akun Supabase Auth yang UID-nya terdaftar di tabel admin_users.</p>
-<form id="loginForm"><label for="email">Email admin</label><input id="email" type="email" autocomplete="username" required><label for="password">Kata sandi</label><input id="password" type="password" autocomplete="current-password" required><p><button class="btn" id="loginBtn" type="submit">Login</button></p></form></section>
-<section id="dashboard" class="hidden">
-<div class="panel topline"><div><strong id="adminEmail">Admin</strong><div class="note">Sesi login aktif</div></div><div class="actions"><button class="btn" id="refreshBtn">Muat ulang</button><button class="btn" id="csvBtn">Unduh CSV</button><button class="btn red" id="logoutBtn">Keluar</button></div></div>
-<div class="stats"><div class="stat"><span>Total nominal semua catatan donasi</span><strong id="totalAmount">Rp0</strong></div><div class="stat"><span>Jumlah catatan donasi</span><strong id="donationCount">0</strong></div><div class="stat"><span>Menunggu verifikasi</span><strong id="pendingCount">0</strong></div></div>
-<div class="panel"><div class="toolbar"><h2>Daftar Donasi</h2><span class="note">Status harus diverifikasi melalui pembayaran yang benar-benar diterima.</span></div><div id="tableContainer"><div class="empty">Memuat data…</div></div></div>
+
+<div id="configNotice" class="notice warn">
+  Memeriksa konfigurasi Supabase…
+</div>
+
+<div id="message" class="notice hidden" role="status" aria-live="polite"></div>
+
+<section id="loginPanel" class="panel">
+  <h2>Login Admin</h2>
+  <p class="note">
+    Gunakan akun Supabase Auth yang UID-nya terdaftar
+    di tabel admin_users.
+  </p>
+
+  <form id="loginForm">
+    <label for="email">Email admin</label>
+    <input id="email" type="email" autocomplete="username" required>
+
+    <label for="password">Kata sandi</label>
+    <input id="password" type="password"
+           autocomplete="current-password" required>
+
+    <p>
+      <button class="btn" id="loginBtn" type="submit">Login</button>
+    </p>
+  </form>
 </section>
-<div class="panel"><h2>Catatan keamanan</h2><p class="note">Jangan menandai donasi sebagai dibayar hanya karena formulir berhasil dikirim. Periksa rekening atau penyedia pembayaran terlebih dahulu. Gunakan publishable key dengan RLS yang benar; jangan pernah memasukkan service_role/secret key di sini.</p></div>
+
+<section id="dashboard" class="hidden">
+
+  <div class="panel topline">
+    <div>
+      <strong id="adminEmail">Admin</strong>
+      <div class="note">Sesi login aktif</div>
+    </div>
+
+    <div class="actions">
+      <button class="btn" id="refreshBtn" type="button">Muat ulang</button>
+      <button class="btn" id="csvBtn" type="button">Unduh CSV Donasi</button>
+      <button class="btn red" id="logoutBtn" type="button">Keluar</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <span>Total nominal semua catatan donasi</span>
+      <strong id="totalAmount">Rp0</strong>
+      <small class="note">Termasuk donasi yang belum diverifikasi.</small>
+    </div>
+
+    <div class="stat">
+      <span>Jumlah catatan donasi</span>
+      <strong id="donationCount">0</strong>
+    </div>
+
+    <div class="stat">
+      <span>Menunggu verifikasi</span>
+      <strong id="pendingCount">0</strong>
+    </div>
+  </div>
+
+  <section class="panel">
+    <div class="toolbar">
+      <h2>Daftar Donasi</h2>
+      <span class="note">
+        Verifikasi pembayaran sebelum mengubah status menjadi paid.
+      </span>
+    </div>
+
+    <div id="tableContainer">
+      <div class="empty">Memuat data donasi…</div>
+    </div>
+  </section>
+
+  <section class="panel" id="reportFormPanel">
+    <h2 id="reportFormTitle">Catat Pengeluaran Dana</h2>
+
+    <p class="section-intro">
+      Masukkan pengeluaran yang benar-benar terjadi.
+      Laporan baru tidak langsung ditampilkan kepada publik.
+    </p>
+
+    <form id="reportForm" class="report-form">
+
+      <input type="hidden" id="reportId">
+
+      <div class="form-grid">
+
+        <div>
+          <label for="reportCampaign">Program</label>
+          <select id="reportCampaign" required>
+            <option value="pendidikan">Pendidikan</option>
+            <option value="mushola">Pembangunan Mushola</option>
+            <option value="kelas">Pembangunan Kelas</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="reportDate">Tanggal pengeluaran</label>
+          <input id="reportDate" type="date" required>
+        </div>
+
+        <div class="full">
+          <label for="reportTitle">Nama kegiatan atau pengeluaran</label>
+          <input id="reportTitle" type="text" maxlength="180"
+                 placeholder="Contoh: Pembelian bahan bangunan"
+                 required>
+        </div>
+
+        <div class="full">
+          <label for="reportDescription">Keterangan penggunaan dana</label>
+          <textarea id="reportDescription" maxlength="5000"
+            placeholder="Jelaskan penggunaan dana secara jelas."
+            required></textarea>
+        </div>
+
+        <div>
+          <label for="reportAmount">Nominal pengeluaran (Rp)</label>
+          <input id="reportAmount" type="number" min="0.01"
+                 step="0.01" placeholder="Contoh: 500000"
+                 required>
+        </div>
+
+        <div>
+          <label for="reportReceipt">Tautan bukti transaksi (opsional)</label>
+          <input id="reportReceipt" type="url" maxlength="2000"
+                 placeholder="https://...">
+        </div>
+
+      </div>
+
+      <p class="note">
+        Pastikan tautan bukti dapat diakses oleh pihak yang berhak.
+        Jangan mengunggah data pribadi atau informasi rekening yang sensitif.
+      </p>
+
+      <div class="actions">
+        <button class="btn" id="saveReportBtn" type="submit">
+          Simpan Pengeluaran
+        </button>
+
+        <button class="btn gray hidden" id="cancelEditBtn"
+                type="button">
+          Batal Edit
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <section class="panel">
+    <div class="toolbar">
+      <h2>Laporan Penggunaan Dana</h2>
+      <button class="btn" id="reloadReportsBtn" type="button">
+        Muat Ulang Laporan
+      </button>
+    </div>
+
+    <p class="section-intro">
+      Kelola laporan pengeluaran di sini. Hanya laporan yang
+      berstatus dipublikasikan yang dapat dilihat pengunjung
+      melalui kebijakan akses publik Supabase.
+    </p>
+
+    <div class="stats">
+      <div class="stat">
+        <span>Total pengeluaran yang tercatat</span>
+        <strong id="expenseTotal">Rp0</strong>
+        <small class="note">Jumlah seluruh catatan pengeluaran.</small>
+      </div>
+
+      <div class="stat">
+        <span>Jumlah laporan</span>
+        <strong id="expenseCount">0</strong>
+      </div>
+
+      <div class="stat">
+        <span>Laporan dipublikasikan</span>
+        <strong id="publishedCount">0</strong>
+      </div>
+    </div>
+
+    <div id="reportsContainer">
+      <div class="empty">Memuat laporan penggunaan dana…</div>
+    </div>
+  </section>
+
+</section>
+
+<section class="panel">
+  <h2>Catatan Keamanan</h2>
+  <p class="note">
+    Jangan menandai donasi sebagai paid hanya karena formulir
+    berhasil dikirim. Periksa pembayaran yang benar-benar diterima.
+    Jangan pernah memasukkan service_role key atau secret key ke HTML.
+  </p>
+  <p class="note">
+    Total catatan donasi bukan berarti total dana yang telah diterima.
+    Total pengeluaran adalah jumlah laporan pengeluaran yang tercatat,
+    bukan saldo rekening yayasan.
+  </p>
+</section>
+
 </main>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-// GANTI DUA NILAI INI DENGAN PUNYA KAMU
 const SUPABASE_URL = "https://jghscfvxpollihkdpzxc.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable__0YZI4z45e4J99Ny0GoabA_MQkcevdJ";
 
-const $=id=>document.getElementById(id);
-const money=n=>new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n||0));
-const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let sb=null,rows=[];
-function message(t,type=''){ $('message').textContent=t;$('message').className='notice'+(type?' '+type:''); }
-function hideMessage(){ $('message').className='notice hidden'; }
-function ready(){return SUPABASE_URL.startsWith('https://')&&!SUPABASE_URL.includes('TEMPEL_')&&SUPABASE_PUBLISHABLE_KEY.length>20&&!SUPABASE_PUBLISHABLE_KEY.includes('TEMPEL_');}
-async function checkAdmin(uid){
- const {data,error}=await sb.from('admin_users').select('user_id').eq('user_id',uid).maybeSingle();
- if(error)throw Error('Gagal memeriksa admin_users: '+error.message);
- if(!data)throw Error('Akun ini belum terdaftar sebagai admin di tabel admin_users.');
+const $ = id => document.getElementById(id);
+
+const money = n => new Intl.NumberFormat("id-ID", {
+  style: "currency",
+  currency: "IDR",
+  maximumFractionDigits: 0
+}).format(Number(n || 0));
+
+const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;"
+}[c]));
+
+let sb = null;
+let rows = [];
+let reports = [];
+
+function message(text, type = "") {
+  $("message").textContent = text;
+  $("message").className = "notice" + (type ? " " + type : "");
 }
-async function loadDonations(){
- $('tableContainer').innerHTML='<div class="empty">Memuat data donasi…</div>';
- const {data,error}=await sb.from('donations').select('id,campaign_id,donor_name,donor_contact,amount,payment_status,payment_reference,created_at').order('created_at',{ascending:false});
- if(error){$('tableContainer').innerHTML='<div class="empty">Gagal membaca data.</div>';message('Akses baca donations gagal. Pastikan policy SELECT admin dan GRANT sudah dipasang. Detail: '+error.message,'error');return;}
- rows=data||[];$('totalAmount').textContent=money(rows.reduce((s,r)=>s+Number(r.amount||0),0));$('donationCount').textContent=rows.length;$('pendingCount').textContent=rows.filter(r=>String(r.payment_status||'').toLowerCase()==='pending').length;
- if(!rows.length){$('tableContainer').innerHTML='<div class="empty">Belum ada donasi yang dapat ditampilkan.</div>';return;}
- const body=rows.map(r=>{
-  const status=String(r.payment_status||'pending').toLowerCase();
-  const action=status==='pending'
-   ? `<button class="btn mark-paid-btn" data-id="${esc(r.id)}" type="button">Tandai Paid</button>`
-   : '<span class="note">Sudah diproses</span>';
-  return `<tr><td>${esc(r.created_at?new Date(r.created_at).toLocaleString('id-ID'):'-')}</td><td>${esc(r.donor_name)}<small>${esc(r.donor_contact||'Kontak tidak diisi')}</small></td><td>${esc(r.campaign_id||'-')}</td><td><strong>${money(r.amount)}</strong></td><td><span class="status">${esc(r.payment_status||'pending')}</span><small>Ref: ${esc(r.payment_reference||'-')}</small></td><td>${action}</td></tr>`;
- }).join('');
- $('tableContainer').innerHTML='<div class="table-wrap"><table><thead><tr><th>Waktu</th><th>Donatur</th><th>ID Program</th><th>Nominal</th><th>Status / Referensi</th><th>Tindakan</th></tr></thead><tbody>'+body+'</tbody></table></div>';
- document.querySelectorAll('.mark-paid-btn').forEach(btn=>btn.addEventListener('click',()=>markPaid(btn.dataset.id,btn)));
- hideMessage();
+
+function hideMessage() {
+  $("message").className = "notice hidden";
 }
-async function markPaid(id,button){
- const row=rows.find(r=>String(r.id)===String(id));
- if(!row){message('Data donasi tidak ditemukan. Muat ulang halaman.','error');return;}
- if(String(row.payment_status||'pending').toLowerCase()!=='pending'){message('Hanya donasi pending yang bisa diubah.','warn');return;}
- if(!window.confirm('Pastikan uang sebesar '+money(row.amount)+' benar-benar sudah diterima dan diverifikasi. Ubah status menjadi paid?'))return;
- button.disabled=true;
- try{
-  const {data,error}=await sb.from('donations').update({payment_status:'paid'}).eq('id',id).select('id');
-  if(error)throw error;
-  if(!data||data.length===0)throw new Error('Tidak ada baris yang berubah. Periksa izin UPDATE dan kebijakan RLS admin.');
-  message('Status berhasil diubah menjadi paid.');
-  await loadDonations();
- }catch(err){
-  message('Gagal mengubah status: '+(err.message||'Kesalahan tidak diketahui'),'error');
-  button.disabled=false;
- }
+
+function ready() {
+  return SUPABASE_URL.startsWith("https://") &&
+    SUPABASE_PUBLISHABLE_KEY.length > 20;
 }
-async function openDashboard(session){await checkAdmin(session.user.id);$('loginPanel').classList.add('hidden');$('dashboard').classList.remove('hidden');$('adminEmail').textContent=session.user.email||'Admin';await loadDonations();}
-$('loginForm').addEventListener('submit',async e=>{e.preventDefault();hideMessage();if(!sb){message('Konfigurasi Supabase belum diisi.','error');return;}$('loginBtn').disabled=true;try{const {data,error}=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error)throw error;await openDashboard(data.session);}catch(err){message(err.message||'Login gagal.','error');}finally{$('loginBtn').disabled=false;}});
-$('refreshBtn').addEventListener('click',loadDonations);
-$('logoutBtn').addEventListener('click',async()=>{await sb.auth.signOut();rows=[];$('dashboard').classList.add('hidden');$('loginPanel').classList.remove('hidden');message('Kamu sudah keluar.');});
-$('csvBtn').addEventListener('click',()=>{if(!rows.length){message('Tidak ada data untuk diekspor.');return;}const cols=['created_at','donor_name','donor_contact','campaign_id','amount','payment_status','payment_reference'];const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';const csv=[cols,...rows.map(r=>cols.map(c=>r[c]))].map(a=>a.map(q).join(',')).join('\r\n');const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='laporan-donasi-pedulisesama.csv';a.click();URL.revokeObjectURL(url);});
-(async()=>{if(!ready()){$('loginBtn').disabled=true;message('Isi SUPABASE_URL dan SUPABASE_PUBLISHABLE_KEY di kode, simpan, lalu buka ulang file.','warn');return;}if(!window.supabase){message('Library Supabase gagal dimuat. Periksa koneksi internet.','error');return;}sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);$('configNotice').classList.add('hidden');const {data,error}=await sb.auth.getSession();if(error){message(error.message,'error');return;}if(data.session){try{await openDashboard(data.session);}catch(err){await sb.auth.signOut();message(err.message||'Akses admin ditolak.','error');}}})();
-</script></body></html>
+
+function localDate() {
+  const d = new Date();
+  const offset = d.getTimezoneOffset() * 60000;
+  return new Date(d.getTime() - offset).toISOString().slice(0, 10);
+}
+
+function safeHttpUrl(value) {
+  if (!value) return "";
+  try {
+    const u = new URL(value);
+    return ["https:", "http:"].includes(u.protocol) ? u.href : "";
+  } catch {
+    return "";
+  }
+}
+
+function campaignName(id) {
+  const names = {
+    pendidikan: "Pendidikan",
+    mushola: "Pembangunan Mushola",
+    kelas: "Pembangunan Kelas"
+  };
+  return names[id] || id || "-";
+}
+
+async function checkAdmin(uid) {
+  const { data, error } = await sb
+    .from("admin_users")
+    .select("user_id")
+    .eq("user_id", uid)
+    .maybeSingle();
+
+  if (error) {
+    throw Error("Gagal memeriksa admin_users: " + error.message);
+  }
+
+  if (!data) {
+    throw Error("Akun ini belum terdaftar sebagai admin.");
+  }
+}
+
+async function loadDonations() {
+  $("tableContainer").innerHTML =
+    '<div class="empty">Memuat data donasi…</div>';
+
+  const { data, error } = await sb
+    .from("donations")
+    .select("id,campaign_id,donor_name,donor_contact,amount,payment_status,payment_reference,created_at")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    $("tableContainer").innerHTML =
+      '<div class="empty">Gagal membaca data donasi.</div>';
+
+    message("Gagal membaca donations: " + error.message, "error");
+    return;
+  }
+
+  rows = data || [];
+
+  $("totalAmount").textContent =
+    money(rows.reduce((s, r) => s + Number(r.amount || 0), 0));
+
+  $("donationCount").textContent = rows.length;
+
+  $("pendingCount").textContent = rows.filter(r =>
+    String(r.payment_status || "").toLowerCase() === "pending"
+  ).length;
+
+  if (!rows.length) {
+    $("tableContainer").innerHTML =
+      '<div class="empty">Belum ada donasi yang dapat ditampilkan.</div>';
+    return;
+  }
+
+  const body = rows.map(r => {
+    const status = String(r.payment_status || "pending").toLowerCase();
+
+    const action = status === "pending"
+      ? `<button class="btn mark-paid-btn"
+          data-id="${esc(r.id)}" type="button">Tandai Paid</button>`
+      : '<span class="note">Sudah diproses</span>';
+
+    return `
+      <tr>
+        <td>${esc(r.created_at
+          ? new Date(r.created_at).toLocaleString("id-ID")
+          : "-")}</td>
+
+        <td>${esc(r.donor_name)}
+          <small>${esc(r.donor_contact || "Kontak tidak diisi")}</small>
+        </td>
+
+        <td>${esc(campaignName(r.campaign_id))}</td>
+
+        <td><strong>${money(r.amount)}</strong></td>
+
+        <td>
+          <span class="status">${esc(r.payment_status || "pending")}</span>
+          <small>Ref: ${esc(r.payment_reference || "-")}</small>
+        </td>
+
+        <td>${action}</td>
+      </tr>`;
+  }).join("");
+
+  $("tableContainer").innerHTML = `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Waktu</th>
+            <th>Donatur</th>
+            <th>Program</th>
+            <th>Nominal</th>
+            <th>Status / Referensi</th>
+            <th>Tindakan</th>
+          </tr>
+        </thead>
+        <tbody>${body}</tbody>
+      </table>
+    </div>`;
+
+  document.querySelectorAll(".mark-paid-btn").forEach(btn => {
+    btn.addEventListener("click", () => markPaid(btn.dataset.id, btn));
+  });
+}
+
+async function markPaid(id, button) {
+  const row = rows.find(r => String(r.id) === String(id));
+
+  if (!row) {
+    message("Data donasi tidak ditemukan. Muat ulang halaman.", "error");
+    return;
+  }
+
+  if (String(row.payment_status || "pending").toLowerCase() !== "pending") {
+    message("Hanya donasi pending yang bisa diubah.", "warn");
+    return;
+  }
+
+  if (!window.confirm(
+    "Pastikan uang sebesar " + money(row.amount) +
+    " benar-benar sudah diterima dan diverifikasi. Ubah status menjadi paid?"
+  )) return;
+
+  button.disabled = true;
+
+  try {
+    const { data, error } = await sb
+      .from("donations")
+      .update({ payment_status: "paid" })
+      .eq("id", id)
+      .select("id");
+
+    if (error) throw error;
+
+    if (!data || data.length === 0) {
+      throw Error("Tidak ada baris yang berubah. Periksa izin UPDATE.");
+    }
+
+    message("Status donasi berhasil diubah menjadi paid.", "success");
+    await loadDonations();
+  } catch (err) {
+    message("Gagal mengubah status: " + err.message, "error");
+    button.disabled = false;
+  }
+}
+
+/* LAPORAN PENGGUNAAN DANA */
+
+async function loadReports() {
+  $("reportsContainer").innerHTML =
+    '<div class="empty">Memuat laporan penggunaan dana…</div>';
+
+  const { data, error } = await sb
+    .from("fund_usage_reports")
+    .select("id,campaign_id,title,description,amount,expense_date,receipt_url,is_published,created_at")
+    .order("expense_date", { ascending: false })
+    .order("id", { ascending: false });
+
+  if (error) {
+    $("reportsContainer").innerHTML =
+      '<div class="empty">Gagal membaca laporan.</div>';
+
+    message(
+      "Gagal membaca fund_usage_reports: " + error.message +
+      ". Pastikan tabel dan kebijakan RLS sudah dibuat.",
+      "error"
+    );
+    return;
+  }
+
+  reports = data || [];
+
+  $("expenseTotal").textContent =
+    money(reports.reduce((s, r) => s + Number(r.amount || 0), 0));
+
+  $("expenseCount").textContent = reports.length;
+
+  $("publishedCount").textContent =
+    reports.filter(r => r.is_published === true).length;
+
+  if (!reports.length) {
+    $("reportsContainer").innerHTML =
+      '<div class="empty">Belum ada laporan pengeluaran. Gunakan formulir di atas untuk mencatat pengeluaran pertama.</div>';
+    return;
+  }
+
+  const body = reports.map(r => {
+    const published = r.is_published === true;
+    const receipt = safeHttpUrl(r.receipt_url);
+
+    return `
+      <tr>
+        <td>${esc(r.expense_date || "-")}</td>
+
+        <td>
+          <strong>${esc(r.title)}</strong>
+          <small>${esc(campaignName(r.campaign_id))}</small>
+        </td>
+
+        <td>${esc(r.description)}</td>
+
+        <td><strong>${money(r.amount)}</strong></td>
+
+        <td>
+          ${receipt
+            ? `<a class="receipt-link" href="${esc(receipt)}"
+                 target="_blank" rel="noopener noreferrer">Lihat bukti</a>`
+            : '<span class="note">Tidak ada tautan</span>'}
+        </td>
+
+        <td>
+          <span class="status ${published ? "" : "status-draft"}">
+            ${published ? "Dipublikasikan" : "Draft / Disembunyikan"}
+          </span>
+        </td>
+
+        <td>
+          <div class="report-actions">
+            <button class="btn edit-report-btn" data-id="${esc(r.id)}"
+              type="button">Edit</button>
+
+            <button class="btn ${published ? "gold" : ""} toggle-report-btn"
+              data-id="${esc(r.id)}" type="button">
+              ${published ? "Sembunyikan" : "Publikasikan"}
+            </button>
+
+            <button class="btn red delete-report-btn" data-id="${esc(r.id)}"
+              type="button">Hapus</button>
+          </div>
+        </td>
+      </tr>`;
+  }).join("");
+
+  $("reportsContainer").innerHTML = `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tanggal</th>
+            <th>Pengeluaran</th>
+            <th>Keterangan</th>
+            <th>Nominal</th>
+            <th>Bukti</th>
+            <th>Status publikasi</th>
+            <th>Tindakan</th>
+          </tr>
+        </thead>
+        <tbody>${body}</tbody>
+      </table>
+    </div>`;
+
+  document.querySelectorAll(".edit-report-btn").forEach(btn => {
+    btn.addEventListener("click", () => editReport(btn.dataset.id));
+  });
+
+  document.querySelectorAll(".toggle-report-btn").forEach(btn => {
+    btn.addEventListener("click", () => toggleReport(btn.dataset.id, btn));
+  });
+
+  document.querySelectorAll(".delete-report-btn").forEach(btn => {
+    btn.addEventListener("click", () => deleteReport(btn.dataset.id, btn));
+  });
+}
+
+function resetReportForm() {
+  $("reportForm").reset();
+  $("reportId").value = "";
+  $("reportDate").value = localDate();
+  $("reportFormTitle").textContent = "Catat Pengeluaran Dana";
+  $("saveReportBtn").textContent = "Simpan Pengeluaran";
+  $("cancelEditBtn").classList.add("hidden");
+}
+
+function editReport(id) {
+  const r = reports.find(item => String(item.id) === String(id));
+
+  if (!r) {
+    message("Laporan tidak ditemukan. Muat ulang data.", "error");
+    return;
+  }
+
+  $("reportId").value = r.id;
+  $("reportCampaign").value = r.campaign_id;
+  $("reportTitle").value = r.title || "";
+  $("reportDescription").value = r.description || "";
+  $("reportAmount").value = r.amount;
+  $("reportDate").value = r.expense_date || localDate();
+  $("reportReceipt").value = r.receipt_url || "";
+
+  $("reportFormTitle").textContent = "Edit Laporan Pengeluaran";
+  $("saveReportBtn").textContent = "Simpan Perubahan";
+  $("cancelEditBtn").classList.remove("hidden");
+
+  $("reportFormPanel").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+$("reportForm").addEventListener("submit", async e => {
+  e.preventDefault();
+
+  const id = $("reportId").value;
+  const title = $("reportTitle").value.trim();
+  const description = $("reportDescription").value.trim();
+  const amount = Number($("reportAmount").value);
+  const receiptInput = $("reportReceipt").value.trim();
+  const receipt = safeHttpUrl(receiptInput);
+
+  if (!title || !description) {
+    message("Nama pengeluaran dan keterangan wajib diisi.", "warn");
+    return;
+  }
+
+  if (!Number.isFinite(amount) || amount <= 0) {
+    message("Nominal pengeluaran harus lebih besar dari nol.", "warn");
+    return;
+  }
+
+  if (receiptInput && !receipt) {
+    message("Tautan bukti harus menggunakan alamat HTTP atau HTTPS yang valid.", "warn");
+    return;
+  }
+
+  const payload = {
+    campaign_id: $("reportCampaign").value,
+    title,
+    description,
+    amount,
+    expense_date: $("reportDate").value,
+    receipt_url: receipt || null
+  };
+
+  if (!payload.expense_date) {
+    message("Tanggal pengeluaran wajib diisi.", "warn");
+    return;
+  }
+
+  const button = $("saveReportBtn");
+  button.disabled = true;
+
+  try {
+    let result;
+
+    if (id) {
+      result = await sb
+        .from("fund_usage_reports")
+        .update(payload)
+        .eq("id", id)
+        .select("id");
+    } else {
+      payload.is_published = false;
+
+      result = await sb
+        .from("fund_usage_reports")
+        .insert(payload)
+        .select("id");
+    }
+
+    if (result.error) throw result.error;
+
+    if (!result.data || result.data.length === 0) {
+      throw Error(
+        "Tidak ada data yang berubah. Periksa izin database dan kebijakan RLS."
+      );
+    }
+
+    resetReportForm();
+
+    message(
+      id
+        ? "Laporan berhasil diperbarui."
+        : "Pengeluaran berhasil dicatat sebagai draft. Publikasikan jika sudah siap.",
+      "success"
+    );
+
+    await loadReports();
+  } catch (err) {
+    message("Gagal menyimpan laporan: " + err.message, "error");
+  } finally {
+    button.disabled = false;
+  }
+});
+
+$("cancelEditBtn").addEventListener("click", resetReportForm);
+
+async function toggleReport(id, button) {
+  const r = reports.find(item => String(item.id) === String(id));
+
+  if (!r) {
+    message("Laporan tidak ditemukan. Muat ulang data.", "error");
+    return;
+  }
+
+  const nextState = !r.is_published;
+
+  const confirmation = nextState
+    ? "Publikasikan laporan ini agar dapat dilihat pengunjung website?"
+    : "Sembunyikan laporan ini dari pengunjung website?";
+
+  if (!window.confirm(confirmation)) return;
+
+  button.disabled = true;
+
+  try {
+    const { data, error } = await sb
+      .from("fund_usage_reports")
+      .update({ is_published: nextState })
+      .eq("id", id)
+      .select("id");
+
+    if (error) throw error;
+
+    if (!data || data.length === 0) {
+      throw Error("Tidak ada perubahan. Periksa izin UPDATE dan RLS.");
+    }
+
+    message(
+      nextState
+        ? "Laporan berhasil dipublikasikan."
+        : "Laporan berhasil disembunyikan.",
+      "success"
+    );
+
+    await loadReports();
+  } catch (err) {
+    message("Gagal mengubah publikasi: " + err.message, "error");
+    button.disabled = false;
+  }
+}
+
+async function deleteReport(id, button) {
+  const r = reports.find(item => String(item.id) === String(id));
+
+  if (!r) {
+    message("Laporan tidak ditemukan. Muat ulang data.", "error");
+    return;
+  }
+
+  if (!window.confirm(
+    "Hapus laporan \"" + r.title +
+    "\" secara permanen? Tindakan ini tidak dapat dibatalkan."
+  )) return;
+
+  button.disabled = true;
+
+  try {
+    const { data, error } = await sb
+      .from("fund_usage_reports")
+      .delete()
+      .eq("id", id)
+      .select("id");
+
+    if (error) throw error;
+
+    if (!data || data.length === 0) {
+      throw Error("Tidak ada data yang dihapus. Periksa izin DELETE dan RLS.");
+    }
+
+    if ($("reportId").value === String(id)) {
+      resetReportForm();
+    }
+
+    message("Laporan berhasil dihapus.", "success");
+    await loadReports();
+  } catch (err) {
+    message("Gagal menghapus laporan: " + err.message, "error");
+    button.disabled = false;
+  }
+}
+
+/* LOGIN, DASHBOARD, DAN EKSPOR CSV */
+
+async function openDashboard(session) {
+  await checkAdmin(session.user.id);
+
+  $("loginPanel").classList.add("hidden");
+  $("dashboard").classList.remove("hidden");
+  $("adminEmail").textContent = session.user.email || "Admin";
+
+  resetReportForm();
+
+  await Promise.all([
+    loadDonations(),
+    loadReports()
+  ]);
+}
+
+$("loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  hideMessage();
+
+  if (!sb) {
+    message("Konfigurasi Supabase belum siap.", "error");
+    return;
+  }
+
+  $("loginBtn").disabled = true;
+
+  try {
+    const { data, error } = await sb.auth.signInWithPassword({
+      email: $("email").value.trim(),
+      password: $("password").value
+    });
+
+    if (error) throw error;
+
+    await openDashboard(data.session);
+  } catch (err) {
+    message(err.message || "Login gagal.", "error");
+  } finally {
+    $("loginBtn").disabled = false;
+  }
+});
+
+$("refreshBtn").addEventListener("click", async () => {
+  await Promise.all([loadDonations(), loadReports()]);
+});
+
+$("reloadReportsBtn").addEventListener("click", loadReports);
+
+$("logoutBtn").addEventListener("click", async () => {
+  const { error } = await sb.auth.signOut();
+
+  if (error) {
+    message("Gagal keluar: " + error.message, "error");
+    return;
+  }
+
+  rows = [];
+  reports = [];
+
+  $("dashboard").classList.add("hidden");
+  $("loginPanel").classList.remove("hidden");
+
+  resetReportForm();
+  message("Kamu sudah keluar.", "success");
+});
+
+$("csvBtn").addEventListener("click", () => {
+  if (!rows.length) {
+    message("Tidak ada data donasi untuk diekspor.", "warn");
+    return;
+  }
+
+  const cols = [
+    "created_at",
+    "donor_name",
+    "donor_contact",
+    "campaign_id",
+    "amount",
+    "payment_status",
+    "payment_reference"
+  ];
+
+  const q = v => '"' + String(v ?? "").replace(/"/g, '""') + '"';
+
+  const csv = [
+    cols,
+    ...rows.map(r => cols.map(c => r[c]))
+  ].map(a => a.map(q).join(",")).join("\r\n");
+
+  const blob = new Blob(["\ufeff" + csv], {
+    type: "text/csv;charset=utf-8;"
+  });
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+
+  a.href = url;
+  a.download = "laporan-donasi-pedulisesama.csv";
+  a.click();
+
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+
+(async () => {
+  if (!ready()) {
+    $("loginBtn").disabled = true;
+    $("configNotice").textContent = "Konfigurasi Supabase tidak valid.";
+    return;
+  }
+
+  if (!window.supabase) {
+    $("configNotice").textContent =
+      "Library Supabase gagal dimuat. Periksa koneksi internet.";
+    $("configNotice").classList.add("error");
+    return;
+  }
+
+  sb = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+  $("configNotice").classList.add("hidden");
+
+  const { data, error } = await sb.auth.getSession();
+
+  if (error) {
+    message("Gagal memeriksa sesi: " + error.message, "error");
+    return;
+  }
+
+  if (data.session) {
+    try {
+      await openDashboard(data.session);
+    } catch (err) {
+      await sb.auth.signOut();
+      $("dashboard").classList.add("hidden");
+      $("loginPanel").classList.remove("hidden");
+      message(err.message || "Akses admin ditolak.", "error");
+    }
+  }
+})();
+</script>
+</body>
+</html>
